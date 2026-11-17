@@ -4,7 +4,7 @@ const { chromium } = require('playwright'); const path = require('path'); const 
   for (const t of ['teal', 'green']) {
     const u = 'file://' + path.join(__dirname, 'set.html') + '?t=' + t; const o = n => path.join(__dirname, 'sets', `${t}-${n}`);
     await p.goto(u); await p.evaluate(() => document.fonts.ready); await p.waitForLoadState('networkidle');
-    await p.locator('#cover').screenshot({ path: o('facebook-cover.png') });
+    await p.locator('#cover').screenshot({ path: o('cover-mobile.png') });
     await p.locator('#lockup').screenshot({ path: o('logo-horizontal.png') });
     await p.locator('#square').screenshot({ path: o('logo-with-name.png') });
     await p.goto(u); await p.waitForLoadState('networkidle');
