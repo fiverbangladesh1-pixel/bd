@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>E-Wallet Brand Set</title>
+<style>
+@font-face{font-family:Anek;font-weight:100 800;font-stretch:75% 125%;src:url(../v2/fonts/anek-bangla-latin-standard-normal.woff2)}
+@font-face{font-family:Inter;font-weight:100 900;src:url(../v2/fonts/inter-latin-wght-normal.woff2)}
+@font-face{font-family:Mono;font-weight:500;src:url(../v2/fonts/ibm-plex-mono-latin-500-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:2400px;background:#222;font-family:Anek,sans-serif;color:#fff}
+body.teal{--bg:url(gen2/bg_teal0_0.png);--av:url(gen2/up_teal_0.png);--deep:#02272d;--deep2:#04424b;--k:#9ff3ef;--ln:#e7c873;
+  --g:linear-gradient(100deg,#ffffff 0%,#c9fffa 40%,#6fe6e0 100%);--glow:rgba(40,220,210,.55);--ring:#e7c873}
+body.green{--bg:url(gen2/bg_green0_0.png);--av:url(gen2/up_green_0.png);--deep:#04160d;--deep2:#0a3a22;--k:#e9d08c;--ln:#e0b64f;
+  --g:linear-gradient(180deg,#fff3c4 0%,#e3b54a 52%,#a87a1c 100%);--glow:rgba(220,175,60,.4);--ring:#e0b64f}
+.k{font-family:Mono;letter-spacing:.42em;color:var(--k);display:flex;align-items:center;gap:22px;padding-left:.42em}
+.k i{width:70px;height:2px;background:linear-gradient(90deg,transparent,var(--ln))}.k i:last-child{transform:scaleX(-1)}
+.w{font-weight:800;font-stretch:125%;line-height:1;letter-spacing:-.01em;background-image:var(--g);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 14px 40px var(--glow))}
+.s{display:flex;align-items:center;gap:30px;font-family:Inter;font-weight:600;letter-spacing:.62em;padding-left:.62em}
+.s i{flex:1;height:2.5px;background:linear-gradient(90deg,transparent,var(--ln))}.s i:last-child{transform:scaleX(-1)}
+.tg{display:inline-flex;align-items:center;gap:18px;padding:10px 36px 10px 10px;border-radius:60px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.34);font-family:Inter;font-weight:700;letter-spacing:-.01em}
+.tg span{border-radius:50%;background:linear-gradient(#37aee2,#1e96c8);display:flex;align-items:center;justify-content:center;flex:none}
+.tg svg{width:58%;height:58%;margin-left:-6%}
+.avc{border-radius:50%;background:var(--av) center/cover;flex:none}
+/* cover 1640x924 */
+#cover{width:1640px;height:924px;position:relative;overflow:hidden;background:var(--deep)}
+#cover .bg{position:absolute;inset:0;background:var(--bg) center/cover}
+#cover .sh{position:absolute;inset:0;background:radial-gradient(46% 42% at 50% 36%,var(--deep),transparent 100%);opacity:.8}
+#cover .blk{position:absolute;left:0;right:0;top:118px;display:flex;flex-direction:column;align-items:center}
+#cover .k{font-size:21px}#cover .w{font-size:196px;margin-top:14px}#cover .s{width:760px;font-size:44px;margin-top:6px}
+#cover .tg{margin-top:36px;font-size:38px}#cover .tg span{width:58px;height:58px}
+/* horizontal logo 2400x1000 */
+#lockup{width:2400px;height:1000px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:100px;background:radial-gradient(70% 100% at 30% 50%,var(--deep2),var(--deep) 75%)}
+#lockup .avc{width:660px;height:660px;box-shadow:0 0 0 6px var(--ring),0 40px 140px var(--glow)}
+#lockup .w{font-size:250px}#lockup .s{font-size:58px;margin-top:20px}#lockup .tg{margin-top:54px;font-size:46px}#lockup .tg span{width:70px;height:70px}
+/* square logo with name 2048 */
+#square{width:2048px;height:2048px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(70% 70% at 50% 38%,var(--deep2),var(--deep) 80%)}
+#square .avc{width:900px;height:900px;box-shadow:0 0 0 8px var(--ring),0 50px 160px var(--glow)}
+#square .w{font-size:300px;margin-top:90px}#square .s{font-size:70px;margin-top:20px;width:1160px}
+/* mobile mock */
+#mock{width:914px;height:800px;background:#fff;position:relative;overflow:hidden}
+#mock .cv{width:914px;height:550px;background-position:center;background-size:cover}
+#mock .wh{position:absolute;left:0;right:0;top:520px;height:300px;background:#fff;border-radius:44px 44px 0 0}
+#mock .avc{position:absolute;left:245px;top:330px;width:424px;height:424px;border:12px solid #fff}
+</style></head><body>
+<div id="cover"><div class="bg"></div><div class="sh"></div><div class="blk">
+  <div class="k"><i></i>OFFICIAL SUPPORT<i></i></div><div class="w">WALLET</div><div class="s"><i></i>SUPPORT<i></i></div>
+  <div class="tg"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.900 4.300 18.600 19.900c-.25 1.100-.9 1.370-1.820.85l-5.030-3.700-2.430 2.330c-.27.27-.5.5-1.010.5l.36-5.120 9.320-8.420c.4-.36-.09-.56-.63-.2L5.840 13.400.88 11.850c-1.080-.34-1.100-1.080.22-1.600L20.500 2.780c.9-.33 1.690.2 1.400 1.520z"/></svg></span>@ewalletbd247</div>
+</div></div>
+<div id="lockup"><div class="avc"></div><div>
+  <div class="w">WALLET</div><div class="s"><i></i>SUPPORT<i></i></div>
+  <div class="tg"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.900 4.300 18.600 19.900c-.25 1.100-.9 1.370-1.820.85l-5.030-3.700-2.430 2.330c-.27.27-.5.5-1.010.5l.36-5.120 9.320-8.420c.4-.36-.09-.56-.63-.2L5.840 13.400.88 11.850c-1.080-.34-1.100-1.080.22-1.600L20.500 2.780c.9-.33 1.690.2 1.400 1.520z"/></svg></span>@ewalletbd247</div>
+</div></div>
+<div id="square"><div class="avc"></div><div class="w">WALLET</div><div class="s"><i></i>SUPPORT<i></i></div></div>
+<div id="mock"><div class="cv" id="cv"></div><div class="wh"></div><div class="avc"></div></div>
+<script>const t=new URLSearchParams(location.search).get('t')||'teal';document.body.className=t;document.getElementById('cv').style.backgroundImage=`url(sets/${t}-facebook-cover.png)`;</script>
+</body></html>
