@@ -1,0 +1,124 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>E-Wallet Logo v2</title>
+<style>
+@font-face{font-family:Anek;font-weight:100 800;font-stretch:75% 125%;src:url(../v2/fonts/anek-bangla-latin-standard-normal.woff2)}
+@font-face{font-family:Inter;font-weight:100 900;src:url(../v2/fonts/inter-latin-wght-normal.woff2)}
+@font-face{font-family:Mono;font-weight:500;src:url(../v2/fonts/ibm-plex-mono-latin-500-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#555;font-family:Anek,sans-serif;width:2400px}
+.av{width:1024px;height:1024px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.av svg.m{width:900px;height:900px;position:relative}
+/* A — signature gradient */
+.bgA{background:
+  radial-gradient(60% 60% at 22% 14%,rgba(255,255,255,.42),rgba(255,255,255,0) 70%),
+  radial-gradient(75% 75% at 88% 96%,rgba(8,20,150,.75),rgba(8,20,150,0) 70%),
+  linear-gradient(135deg,#ff2fd0 0%,#9a2cf4 42%,#3a4df7 78%,#1e7bff 100%)}
+.bgA::after,.bgB::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 3px rgba(255,255,255,.16),inset 0 30px 60px rgba(255,255,255,.12),inset 0 -50px 90px rgba(10,0,60,.35)}
+/* B — midnight */
+.bgB{background:radial-gradient(70% 70% at 50% 42%,#2b1670 0%,#120a33 45%,#05030d 100%)}
+.bgB .halo{position:absolute;width:760px;height:760px;border-radius:50%;background:radial-gradient(closest-side,rgba(170,70,255,.55),rgba(60,90,255,.18) 55%,transparent 75%)}
+/* C — light */
+.bgC{background:radial-gradient(80% 80% at 30% 20%,#ffffff,#eceafb 80%)}
+/* lockup */
+.lk{display:flex;align-items:center;gap:36px;padding:70px 90px}
+.lk svg.m{width:540px;height:540px;flex:none;margin:-90px -80px -90px -100px}
+.wm{display:flex;flex-direction:column}
+.wm b{font-weight:800;font-stretch:125%;font-size:170px;line-height:.86;letter-spacing:-.012em}
+.wm span{display:flex;align-items:center;gap:22px;margin-top:26px;font-family:Inter;font-weight:600;font-size:40px;letter-spacing:.56em;padding-left:6px}
+.wm span i{flex:1;height:3px;background:currentColor;opacity:.45;margin-right:4px}
+#lkW{color:#fff}#lkD{color:#0d0a1c}
+/* sheet */
+#sheet{width:2400px;background:#08060f;color:#fff;padding:100px}
+#sheet h1{font-weight:800;font-stretch:122%;font-size:58px;letter-spacing:.03em}
+#sheet .p{font-family:Mono;font-size:22px;letter-spacing:.16em;color:#8f89ad;margin-top:12px;text-transform:uppercase}
+.r1{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;margin-top:64px}
+.hero{height:1000px;border-radius:44px;background:#100c1d;display:flex;align-items:center;justify-content:center;position:relative}
+.hero .circ{width:760px;height:760px;border-radius:50%;overflow:hidden;box-shadow:0 60px 140px rgba(140,40,255,.45)}
+.hero .circ .av{transform:scale(.7422);transform-origin:0 0}
+.cap{position:absolute;left:34px;bottom:28px;font-family:Mono;font-size:18px;letter-spacing:.14em;text-transform:uppercase;opacity:.5}
+/* telegram mock */
+.tgm{height:1000px;border-radius:44px;background:#17212b;padding:26px 0 0;position:relative;overflow:hidden;font-family:Inter}
+.tgm .row{display:flex;align-items:center;gap:26px;padding:14px 34px}
+.tgm .row.me{background:#202b36}
+.tgm .a{width:108px;height:108px;border-radius:50%;flex:none;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:40px;color:#fff}
+.tgm .a .av{transform:scale(.10547);transform-origin:0 0;flex:none;margin-right:-916px;margin-bottom:-916px}
+.tgm .t{flex:1;border-bottom:1px solid #0e1621;padding-bottom:16px;margin-bottom:-16px}
+.tgm .t b{display:block;font-size:31px;font-weight:600;color:#fff}
+.tgm .t span{font-size:27px;color:#7f91a4}
+.r2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-top:40px}
+.cell{height:620px;border-radius:44px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cell .lk{transform:scale(.5)}
+.cell .circ{width:440px;height:440px;border-radius:50%;overflow:hidden}
+.cell .circ .av{transform:scale(.4297);transform-origin:0 0}
+.sizes{display:flex;align-items:flex-end;gap:44px}
+.sizes .c{border-radius:50%;overflow:hidden}
+.sizes .c .av{transform-origin:0 0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="gW" gradientUnits="userSpaceOnUse" x1="0" y1="176" x2="0" y2="436"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e3dbff"/></linearGradient>
+  <linearGradient id="gB" gradientUnits="userSpaceOnUse" x1="116" y1="150" x2="396" y2="436"><stop offset="0" stop-color="#ff3fd6"/><stop offset=".48" stop-color="#8f3cf7"/><stop offset="1" stop-color="#3b7bff"/></linearGradient>
+  <linearGradient id="gD" gradientUnits="userSpaceOnUse" x1="116" y1="150" x2="396" y2="436"><stop offset="0" stop-color="#e022cf"/><stop offset=".5" stop-color="#7a2df0"/><stop offset="1" stop-color="#2f5cf2"/></linearGradient>
+  <clipPath id="cardclip"><rect x="0" y="0" width="512" height="163"/></clipPath>
+  <mask id="clasp" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+    <rect width="512" height="512" fill="#fff"/>
+    <circle cx="300" cy="306" r="13.500" fill="#000"/>
+  </mask>
+  <filter id="sh" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#1a0070" flood-opacity=".45"/></filter>
+  <filter id="shB" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="0" stdDeviation="20" flood-color="#a040ff" flood-opacity=".7"/></filter>
+  <!-- E-wallet body -->
+  <g id="body" mask="url(#clasp)">
+    <path d="M200 176 H204 V436 H200 a84 84 0 0 1 -84 -84 V260 a84 84 0 0 1 84 -84 Z"/>
+    <path d="M190 176 H372 a24 24 0 0 1 24 24 V218 a24 24 0 0 1 -24 24 H190 Z"/>
+    <path d="M190 370 H372 a24 24 0 0 1 24 24 V412 a24 24 0 0 1 -24 24 H190 Z"/>
+    <path d="M190 273 H300 a33 33 0 0 1 0 66 H190 Z"/>
+  </g>
+  <g id="card" clip-path="url(#cardclip)"><g transform="rotate(-11 262 150)">
+    <rect class="cf" x="160" y="84" width="212" height="140" rx="26"/>
+    <rect class="cs" x="160" y="112" width="212" height="24"/>
+  </g></g>
+  <symbol id="mA" viewBox="0 0 512 512"><g transform="translate(0,6)" filter="url(#sh)">
+    <use href="#card" style="--cf:rgba(255,255,255,.34);--cs:rgba(255,255,255,.85)"/><use href="#body" fill="url(#gW)"/></g></symbol>
+  <symbol id="mB" viewBox="0 0 512 512"><g transform="translate(0,6)" filter="url(#shB)">
+    <use href="#card" style="--cf:rgba(160,110,255,.45);--cs:#d9b8ff"/><use href="#body" fill="url(#gB)"/></g></symbol>
+  <symbol id="mC" viewBox="0 0 512 512"><g transform="translate(0,6)">
+    <use href="#card" style="--cf:rgba(122,45,240,.3);--cs:#7a2df0"/><use href="#body" fill="url(#gD)"/></g></symbol>
+  <symbol id="mD" viewBox="0 0 512 512"><g transform="translate(0,6)">
+    <use href="#card" style="--cf:rgba(13,10,28,.3);--cs:#0d0a1c"/><use href="#body" fill="#0d0a1c"/></g></symbol>
+  <symbol id="mWf" viewBox="0 0 512 512"><g transform="translate(0,6)">
+    <use href="#card" style="--cf:rgba(255,255,255,.4);--cs:#fff"/><use href="#body" fill="#fff"/></g></symbol>
+</defs><style>.cf{fill:var(--cf)}.cs{fill:var(--cs)}</style></svg>
+
+<!-- exports -->
+<div class="av bgA" id="avA"><svg class="m"><use href="#mA"/></svg></div>
+<div class="av bgB" id="avB"><div class="halo"></div><svg class="m"><use href="#mB"/></svg></div>
+<div class="av bgC" id="avC"><svg class="m"><use href="#mC"/></svg></div>
+<div style="display:inline-block" id="lkW" class="lk"><svg class="m"><use href="#mWf"/></svg><div class="wm"><b>WALLET</b><span><i></i>SUPPORT</span></div></div><br>
+<div style="display:inline-block" id="lkG" class="lk"><svg class="m"><use href="#mC"/></svg><div class="wm" style="color:#fff"><b>WALLET</b><span><i></i>SUPPORT</span></div></div><br>
+<div style="display:inline-block" id="lkD" class="lk"><svg class="m"><use href="#mD"/></svg><div class="wm"><b>WALLET</b><span><i></i>SUPPORT</span></div></div><br>
+<div class="av" id="icG" style="background:none"><svg class="m" style="width:1000px;height:1000px"><use href="#mC"/></svg></div>
+<div class="av" id="icW" style="background:none"><svg class="m" style="width:1000px;height:1000px"><use href="#mWf"/></svg></div>
+
+<!-- sheet -->
+<div id="sheet">
+  <h1>E-WALLET SUPPORT — BRAND MARK</h1><div class="p">Signature avatar · In-list test · Lockups · Alternates</div>
+  <div class="r1">
+    <div class="hero"><div class="circ"><div class="av bgA"><svg class="m"><use href="#mA"/></svg></div></div><div class="cap">Signature avatar</div></div>
+    <div class="tgm" id="tgm"></div>
+  </div>
+  <div class="r2">
+    <div class="cell" style="background:linear-gradient(135deg,#ff2fd0,#9a2cf4 42%,#3a4df7 78%,#1e7bff);color:#fff"><div class="lk"><svg class="m"><use href="#mWf"/></svg><div class="wm"><b>WALLET</b><span><i></i>SUPPORT</span></div></div></div>
+    <div class="cell" style="background:#000;color:#fff"><div class="lk"><svg class="m"><use href="#mC"/></svg><div class="wm"><b>WALLET</b><span><i></i>SUPPORT</span></div></div></div>
+    <div class="cell" style="background:#f2f0fa;color:#0d0a1c"><div class="lk"><svg class="m"><use href="#mC"/></svg><div class="wm"><b>WALLET</b><span><i></i>SUPPORT</span></div></div></div>
+    <div class="cell" style="background:#100c1d"><div class="circ"><div class="av bgB"><div class="halo"></div><svg class="m"><use href="#mB"/></svg></div></div><div class="cap">Alternate — midnight</div></div>
+    <div class="cell" style="background:#100c1d"><div class="circ"><div class="av bgC"><svg class="m"><use href="#mC"/></svg></div></div><div class="cap">Alternate — light</div></div>
+    <div class="cell" style="background:#100c1d"><div class="sizes" id="sizes"></div><div class="cap">Scale test — 160 / 96 / 56 / 36 px</div></div>
+  </div>
+</div>
+<script>
+const me=`<div class="av bgA"><svg class="m"><use href="#mA"/></svg></div>`;
+const others=[['#e17076','N','News Channel'],['#7bc862','P','Payments Group'],['#65aadd','S','Support Desk'],['#a695e7','W','Wallet Updates'],null,['#ee7aae','T','Trade Talk'],['#6ec9cb','B','BD Community'],['#faa774','A','Agent Group']];
+document.getElementById('tgm').innerHTML=others.map(o=>o?`<div class="row"><div class="a" style="background:${o[0]}">${o[1]}</div><div class="t"><b>${o[2]}</b><span>Sample message preview…</span></div></div>`
+ :`<div class="row me"><div class="a">${me}</div><div class="t"><b>E-WALLET BD SUPPORT</b><span>@ewalletbd247</span></div></div>`).join('');
+document.getElementById('sizes').innerHTML=[160,96,56,36].map(s=>`<div class="c" style="width:${s}px;height:${s}px"><div class="av bgA" style="transform:scale(${s/1024})"><svg class="m"><use href="#mA"/></svg></div></div>`).join('');
+</script>
+</body></html>
