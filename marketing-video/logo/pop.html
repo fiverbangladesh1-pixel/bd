@@ -1,0 +1,74 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>E-Wallet Attention Test</title>
+<style>
+@font-face{font-family:AnekB;font-weight:100 800;src:url(../v2/fonts/anek-bangla-bengali-standard-normal.woff2)}
+@font-face{font-family:Inter;font-weight:100 900;src:url(../v2/fonts/inter-latin-wght-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:2400px;background:#eef1f7;font-family:Inter,AnekB,sans-serif;color:#0a1b4d}
+#board{padding:90px;width:2400px}
+h1{font-weight:800;font-size:54px;letter-spacing:-.02em}
+.p{font-family:AnekB,Inter;font-size:34px;color:#5b6787;margin-top:8px}
+.g{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:50px}
+.c{background:#fff;border-radius:36px;padding:38px 0 30px;text-align:center;position:relative;border:6px solid transparent}
+.c.rec{border-color:#12b76a;box-shadow:0 20px 60px rgba(18,183,106,.25)}
+.c .tag{position:absolute;left:50%;transform:translateX(-50%);top:-28px;background:#12b76a;color:#fff;font-family:AnekB,Inter;font-weight:700;font-size:28px;padding:8px 28px;border-radius:30px;white-space:nowrap}
+.c>b{display:block;font-weight:800;font-size:44px;margin-top:22px}
+.c>span{font-family:AnekB,Inter;font-size:27px;color:#5b6787}
+/* avatar: design at 1024, scaled with --z */
+.av{width:calc(1024px*var(--z));height:calc(1024px*var(--z));border-radius:50%;overflow:hidden;flex:none;margin:0 auto;position:relative}
+.av .in{width:1024px;height:1024px;transform:scale(var(--z));transform-origin:0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.av svg{width:400px;height:400px;margin-top:-36px}
+.av .w{font-weight:900;font-size:172px;letter-spacing:-.03em;line-height:1;margin-top:8px}
+.av .s{font-weight:800;font-size:66px;letter-spacing:.34em;padding-left:.34em;margin-top:10px}
+.av .rg{position:absolute;inset:26px;border-radius:50%;border:14px solid}
+.c .av{--z:.33}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
+.l{border-radius:36px;padding:16px 0;min-width:0;overflow:hidden}
+.row>div:last-child{min-width:0}.row b,.row span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.st{overflow:hidden}
+.dk{background:#17212b;color:#fff}.lt{background:#fff;color:#111;border:2px solid #e2e6f0}
+.l h3{font-family:AnekB,Inter;font-size:26px;font-weight:600;color:#7f91a4;padding:6px 30px 10px}
+.st{display:flex;gap:10px;padding:8px 30px 18px;border-bottom:1px solid rgba(127,145,164,.25)}
+.st .o{width:104px;height:104px;border-radius:50%;padding:5px;background:linear-gradient(135deg,#34c8ff,#3a6bff);flex:none}
+.st .o .ph,.st .o .av{border:4px solid var(--bgc)}
+.st .av{--z:.0918}
+.ph{width:100%;height:100%;border-radius:50%;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:34px}
+.row{display:flex;align-items:center;gap:20px;padding:10px 30px}
+.row .a{width:80px;height:80px;flex:none}.row .av{--z:.0781}
+.row b{display:block;font-size:24px;font-weight:600}.row span{font-size:20px;color:#7f91a4}
+.note{margin-top:40px;background:#0a1b4d;color:#fff;border-radius:36px;padding:38px 48px;font-family:AnekB,Inter;font-size:36px;line-height:1.5}
+.note b{color:#ffd400}
+.fin{--z:1}.fin.av{border-radius:0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <mask id="k1" maskUnits="userSpaceOnUse" x="0" y="0" width="240" height="240"><rect x="20" y="20" width="200" height="200" rx="56" fill="#fff"/>
+    <path fill="#000" d="M103 72 a11 11 0 0 0 0 22 H240 V72 Z M103 146 a11 11 0 0 0 0 22 H240 V146 Z M172 90 a30 30 0 0 0 0 60 H240 V90 Z"/></mask>
+  <symbol id="m1" viewBox="0 0 240 240"><rect width="240" height="240" fill="currentColor" mask="url(#k1)"/></symbol>
+</defs></svg>
+<div id="board"></div><div id="finals"></div>
+<script>
+const V=[
+ {k:'yellow-black',n:'হলুদ + কালো',bg:'#ffd400',m:'#0b0b0d',t:'#0b0b0d',s:'#0b0b0d'},
+ {k:'orange',n:'কমলা-লাল গ্রেডিয়েন্ট',bg:'linear-gradient(135deg,#ff9a00,#ff2d55)',m:'#fff',t:'#fff',s:'#fff'},
+ {k:'blue-yellow',n:'নীল + হলুদ',bg:'#1546ff',m:'#ffd400',t:'#fff',s:'#ffd400'},
+ {k:'black-yellow',n:'কালো + হলুদ',bg:'#0b0b0d',m:'#ffd400',t:'#fff',s:'#ffd400',rg:'#ffd400'},
+ {k:'red',n:'উজ্জ্বল লাল',bg:'#ff1f3d',m:'#fff',t:'#fff',s:'#fff'},
+ {k:'lime-navy',n:'লাইম + নেভি',bg:'#c8ff3d',m:'#07153f',t:'#07153f',s:'#07153f'},
+ {k:'blue-white',n:'নীল গ্রেডিয়েন্ট + সাদা',bg:'linear-gradient(135deg,#18c8ff,#1546ff)',m:'#fff',t:'#fff',s:'#fff'},
+ {k:'white-orange',n:'সাদা + কমলা',bg:'#fff',m:'#ff5a1f',t:'#0b0b0d',s:'#ff5a1f',rg:'#ff5a1f'},
+];
+const REC=new URLSearchParams(location.search).get('rec')||'yellow-black';
+const av=(v,cls='')=>`<div class="av ${cls}" ${cls.includes('fin')?`id="f_${v.k}"`:''}><div class="in" style="background:${v.bg}">${v.rg?`<div class="rg" style="border-color:${v.rg}"></div>`:''}<svg style="color:${v.m}"><use href="#m1"/></svg><div class="w" style="color:${v.t}">WALLET</div><div class="s" style="color:${v.s}">SUPPORT</div></div></div>`;
+// stand-ins for other people's avatars: photos/logos from earlier renders + initials
+const PH=['gen/A_glass_1.png','gen2/bg_green0_0.png','gen2/6_green_wallet_0.png','gen/cov_bg0_0.png','gen2/bg_teal1_0.png','gen4/c_0.png','gen2/2_sapphire_silver_0.png','gen4/g_0.png'];
+const IN=[['#e17076','R'],['#7bc862','P'],['#65aadd','S'],['#a695e7','W'],['#ee7aae','T'],['#6ec9cb','B'],['#faa774','A'],['#8a8f98','M']];
+const NM=['Rahim Store','Payments Group','Support Desk','Wallet Updates','Trade Talk','BD Community','Agent Group','Market News'];
+const other=i=>i%2?`<div class="ph" style="background-image:url(${PH[i]})"></div>`:`<div class="ph" style="background:${IN[i][0]}">${IN[i][1]}</div>`;
+const list=(bgc)=>`<h3>Stories</h3><div class="st" style="--bgc:${bgc}">${[0,1].map(i=>`<div class="o">${other(i)}</div>`).join('')}${V.map(v=>`<div class="o">${av(v)}</div>`).join('')}</div><h3 style="padding-top:14px">Chats</h3><div style="display:grid;grid-template-columns:1fr 1fr">`+V.map((v,i)=>`<div class="row"><div class="a">${other(i)}</div><div><b>${NM[i]}</b><span>Sample message…</span></div></div><div class="row"><div class="a">${av(v)}</div><div><b>E-WALLET BD SUPPORT</b><span>${i+1} · ${v.n}</span></div></div>`).join('')+'</div>';
+const ri=V.findIndex(v=>v.k===REC);
+document.getElementById('board').innerHTML=`<h1>E-WALLET SUPPORT — ATTENTION TEST</h1><div class="p">বড় E + পুরো নাম · আটটা জোরালো রঙ · নিচে স্টোরি ও চ্যাট লিস্টে পরীক্ষা</div>
+<div class="g">${V.map((v,i)=>`<div class="c ${v.k===REC?'rec':''}">${v.k===REC?'<div class="tag">★ আমার সুপারিশ</div>':''}${av(v)}<b>${i+1}</b><span>${v.n}</span></div>`).join('')}</div>
+<div class="lists"><div class="l dk">${list('#17212b')}</div><div class="l lt">${list('#fff')}</div></div>
+<div class="note" id="note"></div>`;
+document.getElementById('finals').innerHTML=V.map(v=>av(v,'fin')).join('');
+</script>
+</body></html>
