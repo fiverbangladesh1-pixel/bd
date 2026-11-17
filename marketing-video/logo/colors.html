@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>E-Wallet Colour Variants</title>
+<style>
+@font-face{font-family:AnekB;font-weight:100 800;src:url(../v2/fonts/anek-bangla-bengali-standard-normal.woff2)}
+@font-face{font-family:Inter;font-weight:100 900;src:url(../v2/fonts/inter-latin-wght-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:2400px;background:#eef1f7;font-family:Inter,AnekB,sans-serif;color:#0a1b4d}
+#board{padding:90px;width:2400px}
+h1{font-weight:800;font-size:54px;letter-spacing:-.02em}
+.p{font-family:AnekB,Inter;font-size:34px;color:#5b6787;margin-top:8px}
+.g{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:44px}
+.c{background:#fff;border-radius:36px;padding:38px 0 30px;text-align:center;position:relative;border:5px solid transparent}
+.c.rec{border-color:#12b76a;box-shadow:0 20px 60px rgba(18,183,106,.25)}
+.c .tag{position:absolute;left:50%;transform:translateX(-50%);top:-26px;background:#12b76a;color:#fff;font-family:AnekB,Inter;font-weight:700;font-size:28px;padding:8px 28px;border-radius:30px;white-space:nowrap}
+.av{border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;flex:none}
+.c .av{width:330px;height:330px}.av svg{width:60%;height:60%}
+.c b{display:block;font-weight:800;font-size:44px;margin-top:22px}
+.c span{font-family:AnekB,Inter;font-size:27px;color:#5b6787}
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
+.l{border-radius:36px;padding:16px 0;display:grid;grid-template-columns:1fr 1fr}
+.dk{background:#17212b;color:#fff}.lt{background:#fff;color:#111;border:2px solid #e2e6f0}
+.row{display:flex;align-items:center;gap:20px;padding:11px 28px}
+.row .av{width:76px;height:76px;margin:0;font-weight:700;font-size:30px;color:#fff}
+.row b{display:block;font-size:23px;font-weight:600}.row span{font-size:19px;color:#7f91a4}
+.note{margin-top:40px;background:#0a1b4d;color:#fff;border-radius:36px;padding:38px 48px;font-family:AnekB,Inter;font-size:36px;line-height:1.5}
+.note b{color:#c8ff3d}
+/* finals */
+.fin{width:2048px;height:2048px;display:flex;align-items:center;justify-content:center}
+.fin svg{width:1180px;height:1180px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="gbc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18c8ff"/><stop offset="1" stop-color="#1546ff"/></linearGradient>
+  <symbol id="m" viewBox="0 0 240 240"><path fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" d="M190 44 H84 a36 36 0 0 0 -36 36 V160 a36 36 0 0 0 36 36 H190"/><path fill="none" stroke="currentColor" stroke-width="32" stroke-linecap="round" stroke-linejoin="round" d="M48 120 H184 M154 90 L184 120 L154 150"/></symbol>
+</defs></svg>
+<div id="board"></div>
+<div id="finals"></div>
+<script>
+const V=[
+ {k:'blue',n:'ইলেকট্রিক নীল',bg:'#1557ff',fg:'#fff'},
+ {k:'navy-blue',n:'নেভি + নীল',bg:'#07153f',fg:'#2f7bff'},
+ {k:'white-blue',n:'সাদা + নীল',bg:'#fff',fg:'#1557ff',ring:'#d9e2f5'},
+ {k:'gradient',n:'নীল-সায়ান গ্রেডিয়েন্ট',bg:'linear-gradient(135deg,#18c8ff,#1546ff)',fg:'#fff'},
+ {k:'navy-lime',n:'নেভি + লাইম',bg:'#07153f',fg:'#c8ff3d'},
+ {k:'green',n:'পান্না সবুজ',bg:'#0aa35c',fg:'#fff'},
+ {k:'orange',n:'কমলা',bg:'#ff5a1f',fg:'#fff'},
+ {k:'black-gold',n:'কালো + সোনালি',bg:'#0b0b0d',fg:'#f2c14e'},
+];
+const REC=new URLSearchParams(location.search).get('rec')||'navy-lime';
+const av=(v,cls='')=>`<div class="av ${cls}" style="background:${v.bg};color:${v.fg};${v.ring?`box-shadow:inset 0 0 0 3px ${v.ring}`:''}"><svg><use href="#m"/></svg></div>`;
+const others=[['#e17076','R','Rahim Store'],['#7bc862','P','Payments Group'],['#65aadd','S','Support Desk'],['#a695e7','W','Wallet Updates'],['#ee7aae','T','Trade Talk'],['#6ec9cb','B','BD Community'],['#faa774','A','Agent Group'],['#e17076','M','Market News']];
+const list=()=>V.map((v,i)=>`<div class="row"><div class="av" style="background:${others[i][0]}">${others[i][1]}</div><div><b>${others[i][2]}</b><span>Sample message…</span></div></div><div class="row">${av(v)}<div><b>E-WALLET BD SUPPORT</b><span>${i+1} · ${v.n}</span></div></div>`).join('');
+const ri=V.findIndex(v=>v.k===REC);
+document.getElementById('board').innerHTML=`<h1>E-WALLET — COLOUR VARIANTS</h1><div class="p">একই চিহ্ন, আটটা রঙ · নিচে কন্টাক্ট লিস্টে পরীক্ষা</div>
+<div class="g">${V.map((v,i)=>`<div class="c ${v.k===REC?'rec':''}">${v.k===REC?'<div class="tag">★ আমার সুপারিশ</div>':''}${av(v)}<b>${i+1}</b><span>${v.n}</span></div>`).join('')}</div>
+<div class="lists"><div class="l dk">${list()}</div><div class="l lt">${list()}</div></div>
+<div class="note">সুপারিশ: <b>${ri+1} নম্বর — ${V[ri].n}</b>। আপনার বেছে নেওয়া নীল রঙের মধ্যে এটাই ডার্ক ও লাইট — দুই থিমেই উজ্জ্বল থাকে, আর হালকা গ্রেডিয়েন্টের কারণে সাধারণ একরঙা প্রোফাইলগুলো থেকে আলাদা দেখায়। নীলের বাইরে যেতে রাজি থাকলে লিস্টে সবচেয়ে জোরে চোখে পড়ে <b>৭ নম্বর (কমলা)</b>।</div>`;
+document.getElementById('finals').innerHTML=V.map(v=>`<div class="fin" id="f_${v.k}" style="background:${v.bg};color:${v.fg}"><svg><use href="#m"/></svg></div>`).join('');
+</script>
+</body></html>
