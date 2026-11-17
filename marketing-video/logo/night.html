@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><title>Group Night Notice</title>
+<style>
+@font-face{font-family:Anek;font-weight:100 800;font-stretch:75% 125%;src:url(../v2/fonts/anek-bangla-bengali-standard-normal.woff2);unicode-range:U+0964-0965,U+0980-09FE,U+200C-200D,U+25CC}
+@font-face{font-family:Anek;font-weight:100 800;font-stretch:75% 125%;src:url(../v2/fonts/anek-bangla-latin-standard-normal.woff2)}
+@font-face{font-family:Inter;font-weight:100 900;src:url(../v2/fonts/inter-latin-wght-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;background:#222}
+#p{width:1080px;height:1350px;position:relative;overflow:hidden;color:#fff;font-family:Anek,sans-serif;
+  background:radial-gradient(90% 60% at 78% 12%,#1b4fd8 0%,rgba(27,79,216,0) 60%),linear-gradient(180deg,#071a4a 0%,#06123a 45%,#040b26 100%)}
+#stars i{position:absolute;border-radius:50%;background:#fff}
+.moonglow{position:absolute;right:20px;top:20px;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(120,200,255,.42),rgba(120,200,255,0))}
+.moon{position:absolute;right:130px;top:110px;width:190px;height:190px;border-radius:50%;box-shadow:inset -52px 26px 0 0 #eaf6ff;transform:rotate(-12deg);filter:drop-shadow(0 0 30px rgba(170,220,255,.8))}
+.hill{position:absolute;left:-10%;right:-10%;bottom:-260px;height:520px;border-radius:50%;background:linear-gradient(180deg,rgba(24,200,255,.16),rgba(21,70,255,0))}
+.brand{position:absolute;left:70px;top:60px;display:flex;align-items:center;gap:20px}
+.brand .t{width:92px;height:92px;border-radius:26px;background:linear-gradient(135deg,#18c8ff,#1546ff);display:flex;align-items:center;justify-content:center;box-shadow:0 14px 40px rgba(20,100,255,.5)}
+.brand svg{width:58px;height:58px}
+.brand b{font-family:Inter;font-weight:900;font-size:46px;letter-spacing:-.02em;line-height:1}
+.brand span{display:block;font-family:Inter;font-weight:600;font-size:17px;letter-spacing:.3em;color:#8fd2ff;margin-top:8px}
+.tag{position:absolute;left:70px;top:206px;display:inline-flex;align-items:center;gap:12px;padding:10px 24px;border-radius:40px;background:rgba(143,210,255,.14);border:1.5px solid rgba(143,210,255,.5);font-size:30px;font-weight:600;color:#bfe6ff}
+.tag u{width:12px;height:12px;border-radius:50%;background:#ffcc4d;box-shadow:0 0 0 6px rgba(255,204,77,.22)}
+h1{position:absolute;left:70px;top:276px;font-weight:800;font-stretch:86%;font-size:118px;line-height:1.14}
+h1 em{font-style:normal;background-image:linear-gradient(90deg,#6fe0ff,#8fb4ff);-webkit-background-clip:text;color:transparent}
+.rows{position:absolute;left:70px;right:70px;top:586px;display:flex;flex-direction:column;gap:18px}
+.row{display:flex;align-items:center;gap:26px;padding:20px 28px;border-radius:30px;background:rgba(10,28,90,.62);border:1.5px solid rgba(143,210,255,.26)}
+.row i{width:78px;height:78px;border-radius:24px;flex:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#18c8ff,#1546ff)}
+.row i svg{width:42px;height:42px;fill:none;stroke:#fff;stroke-width:2.200;stroke-linecap:round;stroke-linejoin:round}
+.row b{display:block;font-size:42px;font-weight:700;line-height:1.25}
+.row span{display:block;font-size:30px;font-weight:500;color:#b7c8ee;line-height:1.35;margin-top:2px}
+.row.g{background:linear-gradient(135deg,rgba(18,183,106,.3),rgba(10,28,90,.62));border-color:rgba(61,240,164,.55)}
+.row.g i{background:linear-gradient(135deg,#2fe39a,#0a9a56)}
+.sup{position:absolute;left:70px;right:70px;bottom:158px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.sup p{font-size:34px;font-weight:600;color:#dbe7ff;line-height:1.3}
+.tg{display:flex;align-items:center;gap:16px;padding:10px 34px 10px 10px;border-radius:60px;background:#fff;color:#0a1b4d;font-family:Inter;font-weight:800;font-size:40px;letter-spacing:-.01em;box-shadow:0 20px 50px rgba(0,0,0,.4);flex:none}
+.tg span{width:66px;height:66px;border-radius:50%;background:linear-gradient(#37aee2,#1e96c8);display:flex;align-items:center;justify-content:center}
+.tg svg{width:38px;height:38px;margin-left:-4px}
+.gn{position:absolute;left:0;right:0;bottom:52px;text-align:center;font-size:44px;font-weight:700;color:#bfe6ff;display:flex;align-items:center;justify-content:center;gap:22px}
+.gn::before,.gn::after{content:"";width:150px;height:2px;background:linear-gradient(90deg,transparent,#8fd2ff)}.gn::after{transform:scaleX(-1)}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <mask id="k1" maskUnits="userSpaceOnUse" x="0" y="0" width="240" height="240"><rect x="20" y="20" width="200" height="200" rx="56" fill="#fff"/>
+    <path fill="#000" d="M103 72 a11 11 0 0 0 0 22 H240 V72 Z M103 146 a11 11 0 0 0 0 22 H240 V146 Z M172 90 a30 30 0 0 0 0 60 H240 V90 Z"/></mask>
+  <symbol id="mw" viewBox="0 0 240 240"><rect width="240" height="240" fill="#fff" mask="url(#k1)"/></symbol>
+</defs></svg>
+<div id="p"><div id="stars"></div><div class="moonglow"></div><div class="moon"></div><div class="hill"></div>
+  <div class="brand"><div class="t"><svg><use href="#mw"/></svg></div><div><b>WALLET</b><span>AGENT GROUP</span></div></div>
+  <div class="tag"><u></u>গ্রুপ নোটিশ</div>
+  <h1>রাতে গ্রুপ<br><em>বন্ধ থাকবে</em></h1>
+  <div class="rows">
+    <div class="row"><i><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2.500"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></i><div><b>রাতে মেসেজ ও রিভিউ শেয়ার বন্ধ</b><span>এই সময়ে গ্রুপে কেউ কিছু পোস্ট করতে পারবেন না</span></div></div>
+    <div class="row"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.500"/><path d="M12 2v2.500M12 19.500V22M2 12h2.500M19.500 12H22M4.900 4.900l1.800 1.800M17.300 17.300l1.800 1.800M4.900 19.100l1.800-1.800M17.300 6.700l1.800-1.800"/></svg></i><div><b>সকালে গ্রুপ আবার চালু হবে</b><span>সকালে আগের মতোই সবাই পোস্ট করতে পারবেন</span></div></div>
+    <div class="row g"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.500"/><path d="M12 6.500V12l3.500 2"/></svg></i><div><b>লেনদেন ২৪ ঘণ্টা চালু</b><span>আপনার ওয়ালেট একাউন্টের লেনদেন রাতেও চলবে</span></div></div>
+  </div>
+  <div class="sup"><p>যেকোনো সমস্যায়<br>সাপোর্টে যোগাযোগ করুন</p>
+    <div class="tg"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M21.900 4.300 18.600 19.900c-.25 1.100-.9 1.370-1.820.85l-5.030-3.700-2.430 2.330c-.27.27-.5.5-1.010.5l.36-5.120 9.320-8.420c.4-.36-.09-.56-.63-.2L5.840 13.400.88 11.850c-1.080-.34-1.100-1.080.22-1.600L20.500 2.780c.9-.33 1.690.2 1.400 1.520z"/></svg></span>@ewalletbd247</div></div>
+  <div class="gn">শুভ রাত্রি</div>
+</div>
+<script>
+let s=5;const R=()=>(s=(s*16807)%2147483647)/2147483647;const st=document.getElementById('stars');
+for(let i=0;i<110;i++){const d=document.createElement('i');const z=1+R()*3.2;d.style.cssText=`left:${R()*1080}px;top:${R()*760}px;width:${z}px;height:${z}px;opacity:${.25+R()*.7}`;st.appendChild(d)}
+</script>
+</body></html>
