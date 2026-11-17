@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<title>E-Wallet Promo</title>
+<style>
+@font-face{font-family:Sora;font-weight:400;src:url(fonts/sora-latin-400-normal.woff2)}
+@font-face{font-family:Sora;font-weight:500;src:url(fonts/sora-latin-500-normal.woff2)}
+@font-face{font-family:Sora;font-weight:600;src:url(fonts/sora-latin-600-normal.woff2)}
+@font-face{font-family:Sora;font-weight:700;src:url(fonts/sora-latin-700-normal.woff2)}
+@font-face{font-family:Sora;font-weight:800;src:url(fonts/sora-latin-800-normal.woff2)}
+@font-face{font-family:Anek;font-weight:400;src:url(fonts/anek-bangla-bengali-400-normal.woff2)}
+@font-face{font-family:Anek;font-weight:500;src:url(fonts/anek-bangla-bengali-500-normal.woff2)}
+@font-face{font-family:Anek;font-weight:600;src:url(fonts/anek-bangla-bengali-600-normal.woff2)}
+@font-face{font-family:Anek;font-weight:700;src:url(fonts/anek-bangla-bengali-700-normal.woff2)}
+@font-face{font-family:Anek;font-weight:800;src:url(fonts/anek-bangla-bengali-800-normal.woff2)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#05040f}
+body{font-family:Sora,Anek,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+.bn{font-family:Anek,Sora,sans-serif}
+svg.i{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block}
+svg.f{fill:currentColor;stroke:none}
+
+#stage{position:absolute;inset:0;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%,#17103f 0%,#0a0720 45%,#05040f 100%)}
+
+/* ---------- animation primitives ---------- */
+.a{animation-duration:var(--t,.9s);animation-delay:calc(var(--s,0s) + var(--o,0s));animation-fill-mode:both;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+.up{animation-name:up}@keyframes up{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
+.down{animation-name:down}@keyframes down{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:none}}
+.left{animation-name:left}@keyframes left{from{opacity:0;transform:translateX(-120px)}to{opacity:1;transform:none}}
+.right{animation-name:right}@keyframes right{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:none}}
+.pop{animation-name:pop;animation-timing-function:cubic-bezier(.34,1.56,.64,1)}@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.fade{animation-name:fade}@keyframes fade{from{opacity:0}to{opacity:1}}
+.blur{animation-name:blurin}@keyframes blurin{from{opacity:0;filter:blur(24px);transform:scale(1.12)}to{opacity:1;filter:blur(0);transform:none}}
+.wipe{animation-name:wipe}@keyframes wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.growx{animation-name:growx;transform-origin:left center}@keyframes growx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.growy{animation-name:growy;transform-origin:center bottom}@keyframes growy{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.draw{stroke-dasharray:1;animation-name:draw}@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  animation:sIn .6s cubic-bezier(.16,1,.3,1) var(--s) both, sOut .5s cubic-bezier(.7,0,.84,0) calc(var(--s) + var(--l) - .5s) forwards}
+@keyframes sIn{from{opacity:0}to{opacity:1}}
+@keyframes sOut{from{opacity:1;transform:scale(1);filter:blur(0)}to{opacity:0;transform:scale(1.08);filter:blur(18px)}}
+
+/* ---------- background ---------- */
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:.75}
+.o1{width:900px;height:900px;left:-380px;top:-260px;background:#b014c9;animation:d1 46s linear both}
+.o2{width:1000px;height:1000px;right:-480px;top:560px;background:#3b4ff0;animation:d2 46s linear both}
+.o3{width:820px;height:820px;left:-200px;bottom:-380px;background:#6a22e0;animation:d3 46s linear both}
+.o4{width:520px;height:520px;right:40px;top:120px;background:#16c7d4;opacity:.28;animation:d4 46s linear both}
+@keyframes d1{0%{transform:translate(0,0)}50%{transform:translate(260px,300px) scale(1.15)}100%{transform:translate(60px,80px)}}
+@keyframes d2{0%{transform:translate(0,0)}50%{transform:translate(-300px,-260px) scale(.9)}100%{transform:translate(-80px,120px)}}
+@keyframes d3{0%{transform:translate(0,0)}50%{transform:translate(340px,-200px) scale(1.1)}100%{transform:translate(120px,-40px)}}
+@keyframes d4{0%{transform:translate(0,0)}50%{transform:translate(-340px,700px)}100%{transform:translate(-100px,1100px)}}
+.grid{position:absolute;inset:-100px;background-image:linear-gradient(rgba(255,255,255,.045) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(255,255,255,.045) 1.5px,transparent 1.5px);background-size:90px 90px;
+  -webkit-mask-image:radial-gradient(70% 55% at 50% 45%,#000 0%,transparent 100%);animation:gridmove 46s linear both}
+@keyframes gridmove{from{transform:translateY(0)}to{transform:translateY(90px)}}
+.vig{position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 50%,transparent 40%,rgba(3,2,10,.75) 100%)}
+.dots i{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.35;animation:float 46s linear both}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-900px)}}
+.redwash{position:absolute;inset:0;background:radial-gradient(110% 80% at 50% 30%,rgba(255,45,70,.42),rgba(120,10,40,.5) 55%,rgba(10,2,8,.85) 100%);--s:30.5s;--l:9s;
+  animation:sIn .8s ease var(--s) both, fadeout .7s ease calc(var(--s) + var(--l) - .6s) forwards}
+@keyframes fadeout{to{opacity:0}}
+
+/* ---------- chrome: top brand + bottom handle ---------- */
+.topbrand{position:absolute;top:84px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;--s:4s;--l:35.5s;
+  animation:sIn .8s ease var(--s) both, fadeout .5s ease calc(var(--s) + var(--l) - .5s) forwards}
+.topbrand .mk{width:58px;height:58px}
+.topbrand b{font-weight:800;font-size:34px;letter-spacing:.14em}
+.foot{position:absolute;bottom:70px;left:0;right:0;display:flex;justify-content:center;--s:4s;--l:35.5s;
+  animation:sIn .8s ease var(--s) both, fadeout .5s ease calc(var(--s) + var(--l) - .5s) forwards}
+.foot div{display:flex;align-items:center;gap:16px;padding:16px 34px;border-radius:99px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.16);font-size:29px;font-weight:600;letter-spacing:.02em}
+.foot svg{font-size:32px;color:#4cc3ff}
+.foot em{font-style:normal;opacity:.4}
+.foot span{opacity:.85}
+
+/* ---------- shared type ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:14px;padding:13px 30px;border-radius:99px;font-size:28px;font-weight:600;letter-spacing:.04em;
+  background:linear-gradient(90deg,rgba(214,60,255,.28),rgba(80,110,255,.28));border:1.5px solid rgba(255,255,255,.22)}
+.eyebrow svg{font-size:30px}
+h1{font-family:Anek,Sora,sans-serif;font-weight:800;font-size:96px;line-height:1.22;text-align:center;letter-spacing:-.005em}
+h1 .g{background:linear-gradient(90deg,#ff7be5,#a98bff 50%,#62d4ff);-webkit-background-clip:text;color:transparent}
+.sub{font-family:Anek,Sora,sans-serif;font-size:40px;font-weight:500;opacity:.78;text-align:center;line-height:1.4}
+.head{margin-top:200px;display:flex;flex-direction:column;align-items:center;gap:26px;padding:0 60px}
+.glass{background:linear-gradient(155deg,rgba(255,255,255,.15),rgba(255,255,255,.045));border:1.5px solid rgba(255,255,255,.18);box-shadow:0 40px 90px rgba(0,0,0,.45),inset 0 1.5px 0 rgba(255,255,255,.2);border-radius:48px}
+
+/* ---------- logo mark ---------- */
+.mk{border-radius:28%;background:linear-gradient(135deg,#d21bd0,#7a2df0 55%,#3d63f5);display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(160,40,240,.55),inset 0 2px 0 rgba(255,255,255,.35)}
+.mk svg{width:58%;height:58%}
+
+/* ---------- S1 intro ---------- */
+#s1{justify-content:center;gap:0}
+#s1 .ring{position:absolute;left:50%;top:50%;width:760px;height:760px;margin:-520px 0 0 -380px;border-radius:50%;border:2px solid rgba(255,255,255,.14);animation-name:ring;--t:3.4s}
+#s1 .ring.r2{width:1040px;height:1040px;margin:-660px 0 0 -520px;border-color:rgba(255,255,255,.08)}
+@keyframes ring{from{opacity:0;transform:scale(.3)}40%{opacity:1}to{opacity:.7;transform:scale(1)}}
+#s1 .mk{width:270px;height:270px;margin-bottom:70px}
+#s1 .word{font-weight:800;font-size:128px;letter-spacing:.06em;display:flex}
+#s1 .word span{display:inline-block}
+#s1 .line{width:220px;height:5px;border-radius:9px;background:linear-gradient(90deg,#ff6ae0,#6aa0ff);margin:44px 0 40px}
+#s1 .tag{font-family:Anek;font-size:52px;font-weight:600;opacity:.92;text-align:center;line-height:1.35}
+#s1 .sweep{position:absolute;top:0;bottom:0;width:340px;left:0;background:linear-gradient(100deg,transparent,rgba(255,255,255,.16),transparent);animation-name:sweep;--t:1.6s;animation-timing-function:ease-in-out}
+@keyframes sweep{from{transform:translateX(-400px) skewX(-12deg)}to{transform:translateX(1200px) skewX(-12deg)}}
+
+/* ---------- phone ---------- */
+.phonewrap{position:absolute;left:50%;top:540px;width:640px;margin-left:-320px;perspective:2400px;transform:scale(.9);transform-origin:50% 0}
+.phone{width:640px;height:1320px;border-radius:92px;padding:16px;background:linear-gradient(145deg,#4a4766,#15132a 30%,#0b0a18 70%,#3a3757);
+  box-shadow:0 80px 160px rgba(0,0,0,.65),0 0 140px rgba(140,70,255,.45),inset 0 0 0 2px rgba(255,255,255,.14);
+  animation-name:phoneIn;--t:1.7s;animation-timing-function:cubic-bezier(.16,1,.3,1)}
+@keyframes phoneIn{from{opacity:0;transform:translateY(900px) rotateX(38deg) rotateZ(-8deg) scale(.8)}to{opacity:1;transform:rotateX(4deg) rotateZ(0) scale(1)}}
+.phone-drift{animation:drift 6s ease-in-out var(--s) both}
+@keyframes drift{from{transform:translateY(0) scale(1)}to{transform:translateY(-36px) scale(1.035)}}
+.screen{position:relative;width:608px;height:1288px;border-radius:78px;overflow:hidden;background:#f1f3fd}
+.island{position:absolute;top:22px;left:50%;width:150px;height:40px;margin-left:-75px;border-radius:30px;background:#07060f;z-index:5}
+.app{width:440px;height:932px;transform:scale(1.3818);transform-origin:0 0;color:#0d1024;position:relative;font-family:Sora,Anek,sans-serif}
+.hdr{height:132px;padding:56px 18px 0;background:linear-gradient(90deg,#b710b4,#8c08d8 45%,#3f2db9);display:flex;align-items:center;gap:12px;color:#fff}
+.rbtn{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;font-size:22px;flex:none;position:relative}
+.rbtn u{position:absolute;top:-1px;right:-1px;width:13px;height:13px;border-radius:50%;background:#12b76a;border:2px solid #fff}
+.hdr .mid{flex:1;text-align:center}
+.hdr small{display:block;font-size:11.5px;opacity:.85;margin-bottom:3px}
+.hdr .wb{font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:6px}
+.dia{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:9px;letter-spacing:.1em;font-weight:800;background:linear-gradient(90deg,#5aa2ff,#b98cf5 60%,#ff7fa0);border:1.5px solid #ff86a8}
+.dia svg{font-size:11px}
+.wcard{margin:22px 18px 0;border-radius:36px;padding:26px 24px 30px;color:#fff;background:linear-gradient(135deg,#3654e2,#6566ea 50%,#7450e8);box-shadow:0 22px 40px rgba(80,80,230,.35);position:relative}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:20px;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.12);font-size:13px}
+.chip svg{font-size:16px}
+.wcard .scan{position:absolute;right:24px;top:24px;width:38px;height:38px;font-size:19px}
+.bal{font-weight:800;font-size:33px;margin:22px 0 22px;display:flex;align-items:center;gap:10px;letter-spacing:-.01em;white-space:nowrap}
+.bal svg{font-size:22px;opacity:.85}
+.acts{display:flex;justify-content:space-between}
+.act{width:84px;text-align:center;font-size:12px;font-weight:600}
+.act i{width:56px;height:56px;border-radius:50%;margin:0 auto 9px;display:flex;align-items:center;justify-content:center;font-size:25px;border:1.5px solid rgba(255,255,255,.4);box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 8px 16px rgba(20,20,90,.25)}
+.act .c1{background:rgba(255,255,255,.16)}.act .c2{background:linear-gradient(160deg,#ff6ad5,#b33bf0)}.act .c3{background:linear-gradient(160deg,#35d6d0,#1492c9)}.act .c4{background:linear-gradient(160deg,#a36bff,#6a3fe6)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 18px 0}
+.st{background:#fff;border-radius:26px;padding:20px 20px 22px;box-shadow:0 10px 26px rgba(70,80,160,.1)}
+.st small{font-size:12.5px;color:#4d556b;display:block;margin-bottom:10px}
+.st b{font-size:18.5px;font-weight:800}
+.live{margin:26px 18px 0;display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px}
+.live u{width:9px;height:9px;border-radius:50%;background:#3558e6}
+.live svg{font-size:19px;color:#3558e6}
+.live span{margin-left:auto;color:#3558e6;font-size:13px;font-weight:600}
+.livebox{margin:14px 18px 0;height:140px;border-radius:26px 26px 0 0;background:#fff;border:1px solid #dfe3f1}
+.nav{position:absolute;left:0;right:0;bottom:0;height:86px;background:#fff;border-top:1px solid #e3e6f2;display:flex;justify-content:space-around;align-items:flex-start;padding-top:14px;font-size:10.5px;color:#3d4458}
+.nav div{text-align:center;width:66px}.nav svg{font-size:23px;margin:0 auto 4px}
+.nav .on{color:#3558e6}
+.nav .vip{position:relative;top:-36px;color:#3558e6;font-weight:700}
+.nav .vip i{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#f5b72a,#f0568a 55%,#b04af5);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;margin:0 auto 6px -3px;box-shadow:0 10px 20px rgba(220,80,160,.4)}
+.hl{position:absolute;border-radius:40px;border:4px solid #fff;box-shadow:0 0 0 6px rgba(255,120,230,.5),0 0 60px rgba(255,120,230,.8);animation-name:hl;--t:1.6s;animation-timing-function:ease}
+@keyframes hl{0%{opacity:0;transform:scale(1.15)}25%{opacity:1;transform:scale(1)}75%{opacity:1}100%{opacity:0}}
+
+/* callouts beside phone */
+.call{position:absolute;display:flex;align-items:center;gap:16px;padding:20px 30px;border-radius:30px;font-family:Anek,Sora;font-size:34px;font-weight:700;white-space:nowrap;
+  background:rgba(18,14,48,.82);border:1.5px solid rgba(255,255,255,.28);box-shadow:0 26px 60px rgba(0,0,0,.5)}
+.call svg{font-size:40px}
+.call i{width:62px;height:62px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff5ed2,#7b4bff)}
+
+/* ---------- S3 features ---------- */
+.fgrid{margin-top:120px;display:grid;grid-template-columns:1fr 1fr;gap:34px;width:940px}
+.fc{padding:48px 40px 46px;display:flex;flex-direction:column;gap:26px;min-height:530px;justify-content:center;position:relative;overflow:hidden}
+.fc .ic{width:124px;height:124px;border-radius:38px;display:flex;align-items:center;justify-content:center;font-size:62px;box-shadow:inset 0 2px 0 rgba(255,255,255,.4),0 20px 40px rgba(0,0,0,.35)}
+.fc h3{font-family:Anek,Sora;font-size:50px;font-weight:800;line-height:1.2;margin-top:10px}
+.fc small{font-size:24px;font-weight:600;letter-spacing:.14em;opacity:.55;text-transform:uppercase}
+.fc p{font-family:Anek,Sora;font-size:32px;font-weight:500;opacity:.78;line-height:1.35}
+.fc::after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:var(--c);filter:blur(70px);opacity:.55}
+.g1{background:linear-gradient(160deg,#6e8bff,#3b4fe8)}.g2{background:linear-gradient(160deg,#ff6ad5,#b33bf0)}.g3{background:linear-gradient(160deg,#35d6d0,#1492c9)}.g4{background:linear-gradient(160deg,#a36bff,#6a3fe6)}
+
+/* ---------- S4 commission ---------- */
+.big{width:940px;margin-top:80px;padding:56px 56px 0;overflow:hidden;position:relative}
+.big .lab{display:flex;align-items:center;gap:16px;font-family:Anek,Sora;font-size:38px;font-weight:600;opacity:.85}
+.big .lab u{width:16px;height:16px;border-radius:50%;background:#2ee59d;box-shadow:0 0 0 8px rgba(46,229,157,.22)}
+.big .num{font-weight:800;font-size:124px;letter-spacing:-.02em;margin:18px 0 6px;background:linear-gradient(90deg,#fff,#ffc4f3);-webkit-background-clip:text;color:transparent;white-space:nowrap}
+.big .num span{font-family:Anek}
+.big svg.ch{display:block;width:940px;height:300px;margin:10px 0 0 -56px}
+.row3{width:940px;margin-top:34px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px}
+.mini{padding:36px 30px;border-radius:40px;display:flex;flex-direction:column;gap:18px;min-height:270px}
+.mini .ic{width:84px;height:84px;border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:42px}
+.mini h4{font-family:Anek,Sora;font-size:36px;font-weight:700;line-height:1.25}
+.mini small{font-size:21px;letter-spacing:.12em;opacity:.55;font-weight:600}
+.bars{display:flex;align-items:flex-end;gap:9px;height:84px}
+.bars i{width:16px;border-radius:6px;background:linear-gradient(#8fb0ff,#5a6bff)}
+
+/* ---------- S5 KYC ---------- */
+.kyc{width:900px;margin-top:80px;padding:70px 50px 60px;display:flex;flex-direction:column;align-items:center;position:relative;background:linear-gradient(160deg,rgba(255,255,255,.97),rgba(238,246,255,.95));color:#0d1024;border-radius:60px;box-shadow:0 50px 120px rgba(0,0,0,.5),0 0 120px rgba(40,220,150,.25)}
+.seal{width:330px;height:330px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b7f2dd,#86dfc0);display:flex;align-items:center;justify-content:center;position:relative;border:3px solid #6bd3ad}
+.seal svg{width:190px;height:190px;stroke:#0aa35c;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.seal::before,.seal::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:4px solid #2ee59d;animation:pulse 2.4s ease-out calc(var(--s) + 1s) 2 both}
+.seal::after{animation-delay:calc(var(--s) + 1.6s)}
+@keyframes pulse{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.7)}}
+.fv{margin-top:46px;display:flex;align-items:center;gap:14px;padding:14px 36px;border-radius:99px;background:#d6f5e6;color:#0a9a56;font-weight:700;font-size:38px}
+.fv svg{font-size:40px}
+.kyc h2{font-family:Anek;font-size:62px;font-weight:800;margin-top:36px;text-align:center;line-height:1.25}
+.kyc p{font-family:Anek;font-size:34px;color:#4d556b;margin-top:12px;text-align:center}
+.k3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;width:100%;margin-top:46px}
+.k3 div{border:2.5px solid #9fe3c6;background:#f1fbf6;border-radius:34px;padding:30px 10px 26px;text-align:center;font-family:Anek;font-size:36px;font-weight:700}
+.k3 svg{font-size:54px;color:#0aa35c;margin:0 auto 12px}
+.k3 small{display:block;font-family:Sora;font-size:22px;font-weight:500;color:#5a6278;margin-top:4px}
+.conf{position:absolute;inset:0;pointer-events:none}
+.conf i{position:absolute;left:50%;top:235px;width:22px;height:12px;border-radius:5px;animation:conf 2.2s cubic-bezier(.1,.8,.3,1) calc(var(--s) + .9s) both}
+@keyframes conf{0%{opacity:0;transform:translate(0,0) rotate(0) scale(.3)}10%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1)}}
+
+/* ---------- S6 VIP + support ---------- */
+.duo{width:940px;margin-top:120px;display:flex;flex-direction:column;gap:44px}
+.wide{padding:76px 50px;display:flex;align-items:center;gap:44px;position:relative;overflow:hidden}
+.wide .ic{width:190px;height:190px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-size:92px;box-shadow:inset 0 3px 0 rgba(255,255,255,.4),0 24px 60px rgba(0,0,0,.4)}
+.wide h3{font-family:Anek,Sora;font-size:60px;font-weight:800;line-height:1.2}
+.wide p{font-family:Anek,Sora;font-size:35px;opacity:.8;margin-top:10px;line-height:1.35;font-weight:500}
+.wide .dia{font-size:24px;padding:9px 24px;border-width:2.5px;margin-top:20px;gap:10px}.wide .dia svg{font-size:28px}
+.gv{background:linear-gradient(135deg,#f5b72a,#f0568a 55%,#b04af5)}
+.gs{background:linear-gradient(135deg,#6e8bff,#7a3ff0)}
+.shine{position:absolute;top:-40%;bottom:-40%;width:160px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);animation:sweep2 1.5s ease-in-out calc(var(--s) + var(--o,1s)) both}
+@keyframes sweep2{from{transform:translateX(-300px) rotate(14deg)}to{transform:translateX(1100px) rotate(14deg)}}
+
+/* ---------- S7 warning ---------- */
+#s7 .head{margin-top:180px;gap:20px}
+.tri{width:170px;height:170px;border-radius:50%;background:linear-gradient(135deg,#ffb020,#ff3b5c);display:flex;align-items:center;justify-content:center;font-size:96px;box-shadow:0 0 0 18px rgba(255,80,90,.18),0 0 0 40px rgba(255,80,90,.08),0 30px 80px rgba(255,40,70,.55)}
+#s7 h1{font-size:96px;white-space:nowrap}
+#s7 h1 .g{background-image:linear-gradient(90deg,#ffd166,#ff6b6b)}
+.dom{width:940px;margin-top:44px;padding:40px 44px 44px;text-align:center;border-color:rgba(120,255,190,.5);background:linear-gradient(155deg,rgba(30,200,130,.22),rgba(255,255,255,.05))}
+.dom small{font-family:Anek;font-size:36px;font-weight:600;opacity:.9;display:flex;align-items:center;justify-content:center;gap:14px}
+.dom small svg{font-size:40px;color:#3df0a4}
+.url{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:20px;background:#fff;color:#0d1024;border-radius:99px;padding:26px 40px;font-weight:800;font-size:66px;letter-spacing:-.01em;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.url svg{font-size:54px;color:#0aa35c;flex:none}
+.rules{width:940px;margin-top:30px;display:flex;flex-direction:column;gap:22px}
+.rule{display:flex;align-items:center;gap:28px;padding:28px 34px;border-radius:36px;background:rgba(14,6,20,.62);border:1.5px solid rgba(255,255,255,.18)}
+.rule i{width:84px;height:84px;border-radius:26px;flex:none;display:flex;align-items:center;justify-content:center;font-size:44px;background:rgba(255,90,100,.22);color:#ff8f96;border:1.5px solid rgba(255,120,130,.45)}
+.rule p{font-family:Anek,Sora;font-size:38px;font-weight:600;line-height:1.32}
+.rule.dis{background:linear-gradient(155deg,rgba(255,60,80,.34),rgba(60,6,20,.7));border-color:rgba(255,120,130,.6)}
+.rule.dis i{background:#ff3b5c;color:#fff;border-color:#ff8f96}
+.rule b{color:#ffd166;font-weight:800}
+
+/* ---------- S8 CTA ---------- */
+#s8{justify-content:center}
+#s8 .mk{width:190px;height:190px}
+#s8 .word{font-weight:800;font-size:84px;letter-spacing:.08em;margin-top:40px}
+#s8 .ot{font-family:Anek;font-size:44px;font-weight:600;opacity:.85;margin-top:70px;display:flex;align-items:center;gap:18px}
+#s8 .ot::before,#s8 .ot::after{content:"";width:70px;height:3px;border-radius:3px;background:rgba(255,255,255,.4)}
+.tg{margin-top:34px;display:flex;align-items:center;gap:30px;padding:30px 60px 30px 34px;border-radius:99px;background:linear-gradient(90deg,#2aa9ee,#1d86d8);box-shadow:0 30px 90px rgba(40,160,240,.6),inset 0 2px 0 rgba(255,255,255,.4);font-weight:800;font-size:76px;letter-spacing:-.01em;position:relative;overflow:hidden}
+.tg i{width:124px;height:124px;border-radius:50%;background:#fff;color:#229ed9;display:flex;align-items:center;justify-content:center;font-size:74px;flex:none}
+.tg i svg{margin-left:-6px}
+#s8 .name{font-size:32px;letter-spacing:.2em;font-weight:600;opacity:.7;margin-top:30px}
+.site{margin-top:70px;display:flex;align-items:center;gap:20px;padding:24px 46px;border-radius:99px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.3);font-size:50px;font-weight:700}
+.site svg{font-size:46px;color:#3df0a4}
+#s8 .safe{font-family:Anek;font-size:40px;font-weight:600;margin-top:70px;text-align:center;line-height:1.5;opacity:.92}
+#s8 .safe b{color:#ffd166}
+.endfade{position:absolute;inset:0;background:#05040f;opacity:0;animation:fade .7s ease 45.3s both}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+<symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></symbol>
+<symbol id="upload" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 21h14"/></symbol>
+<symbol id="card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></symbol>
+<symbol id="users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"/></symbol>
+<symbol id="crown" viewBox="0 0 24 24"><path d="M2.5 7.5 7 12l5-7.5L17 12l4.5-4.5L19.5 17h-15zM5 21h14"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M3 21h18M6 17V10M11 17V4M16 17v-5M21 17V8"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l3 3 5-6"/></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2.5"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+<symbol id="headset" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+<symbol id="tg" viewBox="0 0 24 24"><path d="M21.9 4.3 18.6 19.9c-.25 1.1-.9 1.37-1.82.85l-5.03-3.7-2.43 2.33c-.27.27-.5.5-1.01.5l.36-5.12 9.32-8.42c.4-.36-.09-.56-.63-.2L5.84 13.4.88 11.85c-1.08-.34-1.1-1.08.22-1.6L20.5 2.78c.9-.33 1.69.2 1.4 1.52z"/></symbol>
+<symbol id="scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 12h10"/></symbol>
+<symbol id="spark" viewBox="0 0 24 24"><path d="M11 3l2.1 5.9L19 11l-5.9 2.1L11 19l-2.1-5.9L3 11l5.9-2.1zM19 16v4M17 18h4"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+<symbol id="link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+<symbol id="xc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></symbol>
+<symbol id="mark" viewBox="0 0 48 48"><path d="M10 6h26a4 4 0 0 1 0 8H18v6h22a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4H18v6h18a4 4 0 0 1 0 8H10a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z" fill="#fff"/><circle cx="36" cy="24" r="2.6" fill="#7a2df0"/></symbol>
+<symbol id="badge" viewBox="0 0 24 24"><path d="M12 2.5l2.2 1.6 2.7-.2 1 2.5 2.4 1.3-.6 2.6 1.3 2.4-1.9 1.9.1 2.7-2.6.8-1.4 2.3-2.7-.5L12 21.5l-2.5-1.6-2.7.5-1.4-2.3-2.6-.8.1-2.7L1 12.7l1.3-2.4-.6-2.6 2.4-1.3 1-2.5 2.7.2z"/><path d="M8.3 12.3l2.6 2.6 4.8-5.4"/></symbol>
+</defs>
+</svg>
+
+<div id="stage">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="orb o4"></div>
+  <div class="grid"></div>
+  <div class="dots" id="dots"></div>
+  <div class="redwash"></div>
+  <div class="vig"></div>
+
+  <!-- ================= S1 : LOGO ================= -->
+  <section class="scene" id="s1" style="--s:0s;--l:4.2s">
+    <div class="ring a" style="--o:.1s"></div><div class="ring r2 a" style="--o:.3s"></div>
+    <div class="mk a pop" style="--o:.25s;--t:1.1s"><svg><use href="#mark"/></svg></div>
+    <div class="word" id="w1">E-WALLET</div>
+    <div class="line a growx" style="--o:1.5s;transform-origin:center"></div>
+    <div class="tag a up" style="--o:1.7s">আপনার ডিজিটাল লেনদেনের<br>স্মার্ট ও নিরাপদ ঠিকানা</div>
+    <div class="sweep a" style="--o:1.1s"></div>
+  </section>
+
+  <!-- ================= S2 : DASHBOARD ================= -->
+  <section class="scene" id="s2" style="--s:4s;--l:6.2s">
+    <div class="head">
+      <div class="eyebrow a down" style="--o:.15s"><svg class="i"><use href="#spark"/></svg>SMART DASHBOARD</div>
+      <h1 class="a blur" style="--o:.3s">সব হিসাব, <span class="g">এক স্ক্রিনে</span></h1>
+    </div>
+    <div class="phonewrap"><div class="phone-drift"><div class="phone a" style="--o:.35s">
+      <div class="screen"><div class="island"></div>
+        <div class="app">
+          <div class="hdr">
+            <div class="rbtn"><svg class="i"><use href="#menu"/></svg></div>
+            <div class="mid"><small>Hello, n3</small><div class="wb">Welcome Back! <span class="dia"><svg class="i"><use href="#crown"/></svg>DIAMOND</span></div></div>
+            <div class="rbtn"><svg class="i"><use href="#download"/></svg><u></u></div>
+            <div class="rbtn"><svg class="i"><use href="#bell"/></svg></div>
+          </div>
+          <div class="wcard a up" style="--o:1.25s">
+            <span class="chip"><svg class="i"><use href="#spark"/></svg>Wallet Balance</span>
+            <div class="rbtn scan"><svg class="i"><use href="#scan"/></svg></div>
+            <div class="bal">BDT&nbsp;<span data-count="1062885" data-dec="2" data-o="1.5" data-dur="2.2">0.00</span><svg class="i"><use href="#eye"/></svg></div>
+            <div class="acts">
+              <div class="act a pop" style="--o:1.9s;--t:.7s"><i class="c1"><svg class="i"><use href="#plus"/></svg></i>Add Balance</div>
+              <div class="act a pop" style="--o:2.05s;--t:.7s"><i class="c2"><svg class="i"><use href="#upload"/></svg></i>Withdraw</div>
+              <div class="act a pop" style="--o:2.2s;--t:.7s"><i class="c3"><svg class="i"><use href="#card"/></svg></i>Gateway</div>
+              <div class="act a pop" style="--o:2.35s;--t:.7s"><i class="c4"><svg class="i"><use href="#users"/></svg></i>Users</div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="st a up" style="--o:2.5s"><small>Today Commission</small><b style="color:#0aa35c">BDT 0.00</b></div>
+            <div class="st a up" style="--o:2.62s"><small>Total Commission</small><b style="color:#c9126f">BDT <span data-count="56974.73" data-dec="2" data-o="2.8" data-dur="1.6" data-plain="1">0.00</span></b></div>
+            <div class="st a up" style="--o:2.74s"><small>Today Deposit</small><b>BDT 0.00</b></div>
+            <div class="st a up" style="--o:2.86s"><small>Today Withdraw</small><b>BDT 0.00</b></div>
+          </div>
+          <div class="live a fade" style="--o:3.1s"><u></u><svg class="i"><use href="#activity"/></svg>Live Activity<span>See all ›</span></div>
+          <div class="livebox a fade" style="--o:3.2s"></div>
+          <div class="nav">
+            <div class="on"><svg class="i"><use href="#home"/></svg>Home</div>
+            <div><svg class="i"><use href="#clock"/></svg>History</div>
+            <div class="vip"><i><svg class="i"><use href="#crown"/></svg></i>VIP</div>
+            <div><svg class="i"><use href="#chart"/></svg>Insight</div>
+            <div><svg class="i"><use href="#user"/></svg>Account</div>
+          </div>
+        </div>
+      </div>
+    </div></div></div>
+    <div class="call a left" style="left:40px;top:1545px;--o:3.5s"><i><svg class="i"><use href="#chart"/></svg></i>কমিশন ট্র্যাকিং</div>
+    <div class="call a right" style="right:36px;top:1385px;--o:4s"><i style="background:linear-gradient(135deg,#35d6d0,#1492c9)"><svg class="i"><use href="#activity"/></svg></i>লাইভ অ্যাক্টিভিটি</div>
+  </section>
+
+  <!-- ================= S3 : FEATURES ================= -->
+  <section class="scene" id="s3" style="--s:10s;--l:6.2s">
+    <div class="head">
+      <div class="eyebrow a down" style="--o:.15s"><svg class="i"><use href="#spark"/></svg>ALL-IN-ONE WALLET</div>
+      <h1 class="a blur" style="--o:.3s">যা দরকার, <span class="g">সবই এখানে</span></h1>
+    </div>
+    <div class="fgrid">
+      <div class="fc glass a up" style="--o:.8s;--c:#5a7bff"><div class="ic g1"><svg class="i"><use href="#plus"/></svg></div><h3>ব্যালেন্স যোগ</h3><small>Add Balance</small><p>সহজেই ওয়ালেটে ব্যালেন্স যোগ করুন</p></div>
+      <div class="fc glass a up" style="--o:1.05s;--c:#ff5ed2"><div class="ic g2"><svg class="i"><use href="#upload"/></svg></div><h3>উইথড্র</h3><small>Withdraw</small><p>কয়েক ধাপেই উইথড্র রিকোয়েস্ট</p></div>
+      <div class="fc glass a up" style="--o:1.3s;--c:#2fd0d0"><div class="ic g3"><svg class="i"><use href="#card"/></svg></div><h3>গেটওয়ে</h3><small>Gateway</small><p>পেমেন্ট গেটওয়ে এক জায়গা থেকে</p></div>
+      <div class="fc glass a up" style="--o:1.55s;--c:#a36bff"><div class="ic g4"><svg class="i"><use href="#users"/></svg></div><h3>ইউজার</h3><small>Users</small><p>আপনার ইউজার, আপনার নিয়ন্ত্রণে</p></div>
+    </div>
+  </section>
+
+  <!-- ================= S4 : COMMISSION ================= -->
+  <section class="scene" id="s4" style="--s:16s;--l:5.7s">
+    <div class="head">
+      <div class="eyebrow a down" style="--o:.15s"><svg class="i"><use href="#chart"/></svg>COMMISSION &amp; INSIGHT</div>
+      <h1 class="a blur" style="--o:.3s">প্রতিটি লেনদেনের<br><span class="g">স্বচ্ছ হিসাব</span></h1>
+    </div>
+    <div class="big glass a up" style="--o:.8s">
+      <div class="lab"><u></u>মোট কমিশন &nbsp;·&nbsp; Total Commission</div>
+      <div class="num"><span>৳</span><span data-count="56974.73" data-dec="2" data-o="1.1" data-dur="2.4" style="font-family:Sora">0.00</span></div>
+      <svg class="ch" viewBox="0 0 940 300" preserveAspectRatio="none">
+        <defs><linearGradient id="ar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7be5" stop-opacity=".45"/><stop offset="1" stop-color="#ff7be5" stop-opacity="0"/></linearGradient>
+        <linearGradient id="ln" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#62d4ff"/><stop offset="1" stop-color="#ff7be5"/></linearGradient></defs>
+        <path class="a fade" style="--o:2.2s;--t:1.4s" d="M0 250 C90 240 130 190 220 200 S360 240 440 170 S600 150 680 100 S860 80 940 30 V300 H0Z" fill="url(#ar)"/>
+        <path class="a draw" style="--o:1.1s;--t:2.4s;animation-timing-function:cubic-bezier(.4,0,.2,1)" pathLength="1" d="M0 250 C90 240 130 190 220 200 S360 240 440 170 S600 150 680 100 S860 80 940 30" fill="none" stroke="url(#ln)" stroke-width="8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="row3">
+      <div class="mini glass a up" style="--o:1.6s"><div class="ic g1"><svg class="i"><use href="#activity"/></svg></div><h4>লাইভ অ্যাক্টিভিটি</h4><small>LIVE ACTIVITY</small></div>
+      <div class="mini glass a up" style="--o:1.8s"><div class="bars">
+        <i class="a growy" style="height:38%;--o:2.1s"></i><i class="a growy" style="height:60%;--o:2.18s"></i><i class="a growy" style="height:46%;--o:2.26s"></i><i class="a growy" style="height:78%;--o:2.34s"></i><i class="a growy" style="height:64%;--o:2.42s"></i><i class="a growy" style="height:100%;--o:2.5s"></i></div><h4>ইনসাইট রিপোর্ট</h4><small>INSIGHT</small></div>
+      <div class="mini glass a up" style="--o:2s"><div class="ic g4"><svg class="i"><use href="#clock"/></svg></div><h4>লেনদেন হিস্টোরি</h4><small>HISTORY</small></div>
+    </div>
+  </section>
+
+  <!-- ================= S5 : KYC ================= -->
+  <section class="scene" id="s5" style="--s:21.5s;--l:5.2s">
+    <div class="head">
+      <div class="eyebrow a down" style="--o:.15s"><svg class="i"><use href="#shield"/></svg>KYC VERIFICATION</div>
+      <h1 class="a blur" style="--o:.3s">ভেরিফাইড মানেই <span class="g">নিরাপদ</span></h1>
+    </div>
+    <div class="kyc a up" style="--o:.6s">
+      <div class="conf" id="conf"></div>
+      <div class="seal a pop" style="--o:.9s;--t:1s"><svg viewBox="0 0 24 24"><use href="#badge"/></svg></div>
+      <div class="fv a pop" style="--o:1.4s;--t:.7s"><svg class="i"><use href="#shield"/></svg>Fully Verified</div>
+      <h2 class="a up" style="--o:1.6s">আপনার একাউন্ট সম্পূর্ণরূপে ভেরিফাইড</h2>
+      <p class="a up" style="--o:1.75s">ভেরিফিকেশন শেষে সব ফিচার আনলক</p>
+      <div class="k3">
+        <div class="a pop" style="--o:2s;--t:.7s"><svg class="i"><use href="#check"/></svg>পরিচয়<small>Identity ✓</small></div>
+        <div class="a pop" style="--o:2.2s;--t:.7s"><svg class="i"><use href="#check"/></svg>ডকুমেন্ট<small>Document ✓</small></div>
+        <div class="a pop" style="--o:2.4s;--t:.7s"><svg class="i"><use href="#check"/></svg>একাউন্ট<small>Account ✓</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= S6 : VIP + SUPPORT ================= -->
+  <section class="scene" id="s6" style="--s:26.5s;--l:4.2s">
+    <div class="head">
+      <div class="eyebrow a down" style="--o:.15s"><svg class="i"><use href="#crown"/></svg>PREMIUM EXPERIENCE</div>
+      <h1 class="a blur" style="--o:.3s">আরও কিছু <span class="g">প্রিমিয়াম</span></h1>
+    </div>
+    <div class="duo">
+      <div class="wide glass a left" style="--o:.7s"><div class="ic gv"><svg class="i"><use href="#crown"/></svg></div><div><h3>ভিআইপি লেভেল</h3><p>লেভেল অনুযায়ী বিশেষ স্ট্যাটাস</p><span class="dia"><svg class="i"><use href="#crown"/></svg>DIAMOND</span></div><div class="shine" style="--o:1.5s"></div></div>
+      <div class="wide glass a right" style="--o:1s"><div class="ic gs"><svg class="i"><use href="#headset"/></svg></div><div><h3>লাইভ সাপোর্ট</h3><p>অ্যাপের ভেতরেই সরাসরি সহায়তা</p></div><div class="shine" style="--o:1.9s"></div></div>
+      <div class="wide glass a left" style="--o:1.3s"><div class="ic g3"><svg class="i"><use href="#shield"/></svg></div><div><h3>সুরক্ষিত একাউন্ট</h3><p>KYC ভেরিফাইড প্রোফাইল ও ইউজার আইডি</p></div><div class="shine" style="--o:2.3s"></div></div>
+    </div>
+  </section>
+
+  <!-- ================= S7 : WARNING ================= -->
+  <section class="scene" id="s7" style="--s:30.5s;--l:9s">
+    <div class="head">
+      <div class="tri a pop" style="--o:.2s;--t:.9s"><svg class="i"><use href="#alert"/></svg></div>
+      <h1 class="a blur" style="--o:.45s"><span class="g">প্রতারক হতে সাবধান!</span></h1>
+    </div>
+    <div class="dom glass a up" style="--o:1.1s">
+      <small><svg class="i"><use href="#shield"/></svg>আমাদের একমাত্র অফিসিয়াল ওয়েবসাইট</small>
+      <div class="url a pop" style="--o:1.5s;--t:.8s"><svg class="i"><use href="#lock"/></svg>ewalletpay24.com</div>
+    </div>
+    <div class="rules">
+      <div class="rule a left" style="--o:2.4s"><i><svg class="i"><use href="#link"/></svg></i><p>লগইনের আগে ডোমেইন মিলিয়ে নিন — <b>ফেক বা নকল লিংকে</b> ঢুকবেন না</p></div>
+      <div class="rule a right" style="--o:3.2s"><i><svg class="i"><use href="#lock"/></svg></i><p>পাসওয়ার্ড, PIN বা OTP <b>কাউকে দেবেন না</b> — আমরা কখনো চাই না</p></div>
+      <div class="rule a left" style="--o:4s"><i><svg class="i"><use href="#tg"/></svg></i><p>শুধু অফিসিয়াল টেলিগ্রাম <b>@ewalletbd247</b> — অন্য আইডি আমাদের নয়</p></div>
+      <div class="rule dis a up" style="--o:5s"><i><svg class="i"><use href="#xc"/></svg></i><p>ফেক ওয়েবসাইট বা ভুয়া আইডিতে প্রতারিত হলে <b>কর্তৃপক্ষ দায়ী থাকবে না</b></p></div>
+    </div>
+  </section>
+
+  <!-- ================= S8 : CTA ================= -->
+  <section class="scene" id="s8" style="--s:39.5s;--l:7s">
+    <div class="mk a pop" style="--o:.3s;--t:1s"><svg><use href="#mark"/></svg></div>
+    <div class="word a blur" style="--o:.5s">E-WALLET</div>
+    <div class="ot a up" style="--o:.9s">অফিসিয়াল টেলিগ্রাম সাপোর্ট</div>
+    <div class="tg a pop" style="--o:1.2s;--t:.9s"><i><svg class="i f"><use href="#tg"/></svg></i>@ewalletbd247<div class="shine" style="--o:2.2s"></div></div>
+    <div class="name a fade" style="--o:1.6s">E-WALLET BD SUPPORT</div>
+    <div class="site a up" style="--o:1.9s"><svg class="i"><use href="#lock"/></svg>ewalletpay24.com</div>
+    <div class="safe a up" style="--o:2.4s">সবসময় অফিসিয়াল লিংক ও আইডি ব্যবহার করুন<br><b>সতর্ক থাকুন, নিরাপদ থাকুন</b></div>
+  </section>
+
+  <div class="topbrand"><div class="mk"><svg><use href="#mark"/></svg></div><b>E-WALLET</b></div>
+  <div class="foot"><div><svg class="i f"><use href="#tg"/></svg>@ewalletbd247<em>|</em><span>ewalletpay24.com</span></div></div>
+  <div class="endfade"></div>
+</div>
+
+<script>
+// deterministic pseudo-random
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+// particles
+const dots=document.getElementById('dots');
+for(let i=0;i<34;i++){const d=document.createElement('i');const s=2+rnd()*6;
+  d.style.cssText=`left:${rnd()*1080}px;top:${300+rnd()*2500}px;width:${s}px;height:${s}px;opacity:${.12+rnd()*.35}`;dots.appendChild(d)}
+// confetti
+const conf=document.getElementById('conf');const cols=['#3b82f6','#10b981','#f59e0b','#ec4899','#8b5cf6','#34d399'];
+for(let i=0;i<46;i++){const c=document.createElement('i');const ang=rnd()*Math.PI*2;const r=260+rnd()*330;
+  c.style.cssText=`background:${cols[i%6]};--x:${Math.cos(ang)*r}px;--y:${Math.sin(ang)*r*0.8-60}px;--r:${rnd()*720-360}deg`;conf.appendChild(c)}
+// intro wordmark letters
+const w1=document.getElementById('w1');const txt=w1.textContent;w1.textContent='';
+[...txt].forEach((ch,i)=>{const s=document.createElement('span');s.textContent=ch;s.className='a up';s.style.cssText=`--o:${.75+i*.07}s;--t:.8s`;w1.appendChild(s)});
+
+// counters
+const counters=[...document.querySelectorAll('[data-count]')].map(el=>{
+  const sc=el.closest('.scene');const s=parseFloat(sc.style.getPropertyValue('--s'));
+  return{el,to:parseFloat(el.dataset.count),dec:+el.dataset.dec||0,start:s+parseFloat(el.dataset.o),dur:parseFloat(el.dataset.dur),plain:!!el.dataset.plain}});
+const ease=x=>1-Math.pow(1-x,4);
+let anims=[];
+window.prep=async()=>{await document.fonts.ready;anims=document.getAnimations();anims.forEach(a=>a.pause());return anims.length};
+window.seek=t=>{
+  for(const a of anims)a.currentTime=t*1000;
+  for(const c of counters){const p=Math.min(1,Math.max(0,(t-c.start)/c.dur));const v=c.to*ease(p);
+    c.el.textContent=c.plain?v.toFixed(c.dec):v.toLocaleString('en-US',{minimumFractionDigits:c.dec,maximumFractionDigits:c.dec})}
+};
+</script>
+</body>
+</html>
