@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>E-Wallet Profile Animation</title>
+<style>
+@font-face{font-family:Inter;font-weight:100 900;src:url(../../v2/fonts/inter-latin-wght-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1024px;height:1024px;overflow:hidden;background:#1546ff;font-family:Inter,sans-serif}
+#lg{width:1024px;height:1024px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#18c8ff,#1546ff)}
+.blob{position:absolute;width:900px;height:900px;border-radius:50%;left:62px;top:62px}
+#b1{background:radial-gradient(closest-side,rgba(120,235,255,.55),rgba(120,235,255,0))}
+#b2{background:radial-gradient(closest-side,rgba(10,30,200,.55),rgba(10,30,200,0))}
+#gl{position:absolute;inset:0;background:radial-gradient(60% 60% at 22% 12%,rgba(255,255,255,.2),rgba(255,255,255,0) 70%)}
+#rf{position:absolute;left:-30%;top:-62%;width:160%;height:100%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.035))}
+#sweep{position:absolute;top:-30%;bottom:-30%;left:0;width:230px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.34),rgba(255,255,255,0));transform:translateX(-500px) rotate(22deg)}
+#sweep2{position:absolute;top:-30%;bottom:-30%;left:0;width:60px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.26),rgba(255,255,255,0));transform:translateX(-500px) rotate(22deg)}
+#ct{position:relative;display:flex;flex-direction:column;align-items:center;color:#fff;filter:drop-shadow(0 8px 14px rgba(6,30,150,.2))}
+#ewrap{width:400px;height:400px;margin-top:-36px;perspective:1400px;position:relative}
+#e{width:400px;height:400px;overflow:visible;display:block}
+#ring,#ring2{position:absolute;left:286.700px;top:200px;width:0;height:0}
+#ring i,#ring2 i{position:absolute;left:-50px;top:-50px;width:100px;height:100px;border-radius:50%;border:5px solid #fff;opacity:0;display:block}
+#w{font-weight:900;font-size:172px;letter-spacing:-.03em;line-height:1;margin-top:8px;display:flex}
+#w span{display:inline-block}
+#srow{display:flex;align-items:center;gap:26px;margin-top:10px}
+#srow i{display:block;height:5px;width:0;border-radius:4px;background:#fff}
+#s{font-weight:800;font-size:66px;letter-spacing:.34em;padding-left:.34em;white-space:nowrap}
+.spk{position:absolute;color:#fff;opacity:0;filter:drop-shadow(0 0 10px rgba(255,255,255,.9))}
+</style></head><body>
+<div id="lg"><div class="blob" id="b1"></div><div class="blob" id="b2"></div><div id="gl"></div><div id="rf"></div>
+  <div id="ct">
+    <div id="ewrap">
+      <svg id="e" viewBox="0 0 240 240">
+        <defs><mask id="k" maskUnits="userSpaceOnUse" x="-200" y="0" width="640" height="240"><rect x="20" y="20" width="200" height="200" rx="56" fill="#fff"/>
+          <g id="slots" fill="#000"><path id="sl1" d="M103 72 a11 11 0 0 0 0 22 H240 V72 Z"/><path id="sl2" d="M103 146 a11 11 0 0 0 0 22 H240 V146 Z"/><path id="notch" d="M172 90 a30 30 0 0 0 0 60 H240 V90 Z"/></g></mask></defs>
+        <rect x="-200" width="640" height="240" fill="#fff" mask="url(#k)"/>
+        <circle id="coin" cx="172" cy="120" r="19" fill="#fff" opacity="0"/>
+      </svg>
+      <div id="ring"><i></i></div><div id="ring2"><i></i></div>
+    </div>
+    <div id="w">WALLET</div>
+    <div id="srow"><i id="l1"></i><div id="s">SUPPORT</div><i id="l2"></i></div>
+  </div>
+  <svg class="spk" id="sp1" style="left:668px;top:236px;width:54px;height:54px" viewBox="0 0 40 40"><path fill="currentColor" d="M20 0 C21 12 28 19 40 20 C28 21 21 28 20 40 C19 28 12 21 0 20 C12 19 19 12 20 0Z"/></svg>
+  <svg class="spk" id="sp2" style="left:300px;top:560px;width:34px;height:34px" viewBox="0 0 40 40"><path fill="currentColor" d="M20 0 C21 12 28 19 40 20 C28 21 21 28 20 40 C19 28 12 21 0 20 C12 19 19 12 20 0Z"/></svg>
+  <div id="sweep"></div><div id="sweep2"></div>
+</div>
+<script src="../../v2/lib/gsap.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),D=8;
+const w=$('#w');w.innerHTML=[...w.textContent].map(c=>`<span>${c}</span>`).join('');
+gsap.defaults({ease:'power3.out'});
+const tl=gsap.timeline({paused:true});
+// 1) E card-flip with a soft bounce
+tl.to('#e',{rotationY:360,duration:1.25,ease:'power3.inOut',transformOrigin:'50% 50%'},.45)
+  .to('#e',{scale:1.09,duration:.62,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},.45);
+// 2) glass sweep + letter wave
+const sweep=(at)=>{tl.fromTo('#sweep',{x:-500},{x:1300,duration:1.15,ease:'power2.inOut',immediateRender:false},at).fromTo('#sweep2',{x:-500},{x:1300,duration:1.15,ease:'power2.inOut',immediateRender:false},at+.16)};
+sweep(1.55);
+tl.to('#w span',{y:-26,scale:1.07,duration:.26,ease:'sine.out',stagger:.07,yoyo:true,repeat:1,transformOrigin:'50% 100%'},1.75);
+tl.fromTo('#sp1',{opacity:0,scale:.2,rotation:-40},{opacity:1,scale:1,rotation:0,duration:.35,immediateRender:false},1.95).to('#sp1',{opacity:0,scale:.2,rotation:40,duration:.45,ease:'power2.in'},2.35);
+// 3) coin flies into the wallet notch
+tl.set('#coin',{attr:{cx:372}},2.9).to('#coin',{opacity:1,duration:.14,ease:'none'},2.95)
+  .to('#coin',{attr:{cx:172},duration:.62,ease:'power3.in'},2.95)
+  .to('#coin',{attr:{r:30},duration:.12,ease:'power1.out'},3.57)
+  .to('#notch',{scaleX:0,scaleY:0,transformOrigin:'172px 120px',duration:.01},3.6)
+  .set('#coin',{opacity:0},3.6)
+  .to('#e',{scaleX:.93,scaleY:1.06,duration:.1,ease:'power2.out',transformOrigin:'50% 50%'},3.57)
+  .to('#e',{scaleX:1,scaleY:1,duration:.7,ease:'elastic.out(1,.45)'},3.67)
+  .fromTo('#ring i',{scale:.5,opacity:.85},{scale:4.2,opacity:0,duration:1,ease:'power2.out',immediateRender:false},3.6)
+  .fromTo('#ring2 i',{scale:.5,opacity:.6},{scale:6.4,opacity:0,duration:1.3,ease:'power2.out',immediateRender:false},3.72)
+  .to('#notch',{scaleX:1,scaleY:1,duration:.55,ease:'back.out(2.2)'},4.05)
+  .set('#coin',{attr:{r:19,cx:172}},4.3);
+// 4) SUPPORT: lines draw out, tracking breathes
+tl.to(['#l1','#l2'],{width:96,duration:.6,ease:'power3.out'},4.75).to(['#l1','#l2'],{width:0,duration:.55,ease:'power3.in'},6.0)
+  .to('#s',{letterSpacing:'.44em',paddingLeft:'.44em',duration:.7,ease:'sine.inOut',yoyo:true,repeat:1},4.75);
+tl.fromTo('#sp2',{opacity:0,scale:.2,rotation:-40},{opacity:.9,scale:1,rotation:0,duration:.3,immediateRender:false},5.05).to('#sp2',{opacity:0,scale:.2,duration:.4,ease:'power2.in'},5.4);
+// 5) second sweep with a gentle pulse of the whole logo
+sweep(6.15);
+tl.to('#ct',{scale:1.035,duration:.5,ease:'sine.inOut',yoyo:true,repeat:1,transformOrigin:'50% 50%'},6.3);
+tl.set({},{},D);
+gsap.set('#e',{rotationY:0});
+window.prep=async()=>{await document.fonts.ready;tl.time(0)};
+window.seek=t=>{t=((t%D)+D)%D;tl.time(t);
+  const a=2*Math.PI*t/D; // ambient light: exact loop
+  $('#b1').style.transform=`translate(${-260+170*Math.cos(a)}px,${-300+150*Math.sin(a)}px)`;
+  $('#b2').style.transform=`translate(${300+160*Math.cos(a+Math.PI)}px,${340+150*Math.sin(a+Math.PI)}px)`;
+  $('#gl').style.transform=`translate(${40*Math.cos(a)}px,${30*Math.sin(a)}px)`;
+  $('#rf').style.transform=`translateY(${14*Math.sin(a*2)}px) rotate(${1.2*Math.sin(a)}deg)`;
+};
+</script>
+</body></html>
