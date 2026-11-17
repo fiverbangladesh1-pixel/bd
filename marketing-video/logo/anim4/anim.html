@@ -1,0 +1,117 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>E-Wallet Logo Build</title>
+<style>
+@font-face{font-family:Inter;font-weight:100 900;src:url(../../v2/fonts/inter-latin-wght-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1024px;height:1024px;overflow:hidden;background:#1546ff;font-family:Inter,sans-serif}
+#lg{width:1024px;height:1024px;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#18c8ff,#1546ff)}
+.blob{position:absolute;width:900px;height:900px;border-radius:50%;left:62px;top:62px}
+#b1{background:radial-gradient(closest-side,rgba(120,235,255,.5),rgba(120,235,255,0))}
+#b2{background:radial-gradient(closest-side,rgba(10,30,200,.5),rgba(10,30,200,0))}
+#gl{position:absolute;inset:0;background:radial-gradient(60% 60% at 22% 12%,rgba(255,255,255,.2),rgba(255,255,255,0) 70%)}
+#rf{position:absolute;left:-30%;top:-62%;width:160%;height:100%;border-radius:50%;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.035))}
+.bk{position:absolute;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.5),rgba(255,255,255,0));left:0;top:0}
+#ct{position:relative;display:flex;flex-direction:column;align-items:center;color:#fff;filter:drop-shadow(0 10px 16px rgba(6,30,150,.24))}
+#ewrap{width:440px;height:440px;margin-top:-30px;perspective:1100px;position:relative}
+#emove{width:440px;height:440px;position:relative;transform-style:preserve-3d}
+#e{width:440px;height:440px;overflow:visible;display:block;position:relative}
+#glow{position:absolute;left:-180px;top:-180px;width:800px;height:800px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(160,225,255,.18) 45%,rgba(255,255,255,0) 70%);opacity:0}
+.ring{position:absolute;left:220px;top:220px;width:0;height:0}
+.ring i{position:absolute;left:-150px;top:-150px;width:300px;height:300px;border-radius:50%;border:4px solid #fff;opacity:0;display:block}
+#cring{left:315.300px}#cring i,#cring2 i{left:-50px;top:-50px;width:100px;height:100px;border-width:5px}#cring2{left:315.300px}
+#wbox{position:relative;margin-top:14px}
+#w,#wsh{font-weight:900;font-size:186px;letter-spacing:-.03em;line-height:1;white-space:nowrap}
+#w{display:flex}
+.lw{display:inline-block;overflow:hidden;padding:0 .04em;margin:0 -.04em}
+.lw span{display:inline-block}
+#wsh{position:absolute;left:0;top:0;color:#8fd2ff;clip-path:polygon(-30% 0,-30% 0,-30% 100%,-30% 100%)}
+#srow{margin-top:10px}
+#s{font-weight:800;font-size:66px;letter-spacing:.34em;padding-left:.34em;white-space:nowrap;opacity:0}
+</style></head><body>
+<div id="lg"><div class="blob" id="b1"></div><div class="blob" id="b2"></div><div id="gl"></div><div id="rf"></div><div id="bks"></div>
+  <div id="ct">
+    <div id="ewrap"><div id="emove"><div id="glow"></div>
+      <svg id="e" viewBox="0 0 240 240">
+        <defs><mask id="k" maskUnits="userSpaceOnUse" x="-200" y="-100" width="640" height="440">
+          <rect id="base" x="106" y="106" width="28" height="28" rx="14" fill="#fff"/>
+          <g fill="#000"><path id="sl1" d="M103 72 a11 11 0 0 0 0 22 H240 V72 Z"/><path id="sl2" d="M103 146 a11 11 0 0 0 0 22 H240 V146 Z"/><path id="notch" d="M172 90 a30 30 0 0 0 0 60 H240 V90 Z"/></g></mask></defs>
+        <g mask="url(#k)"><rect x="-200" y="-100" width="640" height="440" fill="#fff"/>
+          <rect id="band" x="-140" y="-40" width="54" height="320" fill="#9bd8ff" transform="skewX(-22)" opacity=".95"/>
+          <rect id="band2" x="-140" y="-40" width="14" height="320" fill="#9bd8ff" transform="skewX(-22)" opacity=".8"/></g>
+        <circle id="coin" cx="372" cy="120" r="19" fill="#fff" opacity="0"/><g id="sparks"></g>
+      </svg>
+      <div class="ring" id="r1"><i></i></div><div class="ring" id="r2"><i></i></div>
+      <div class="ring" id="cring"><i></i></div><div class="ring" id="cring2"><i></i></div>
+    </div></div>
+    <div id="wbox"><div id="w">WALLET</div><div id="wsh">WALLET</div></div>
+    
+  </div>
+</div>
+<script src="../../v2/lib/gsap.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),D=8;
+const w=$('#w');w.innerHTML=[...w.textContent].map(c=>`<span class="lw"><span>${c}</span></span>`).join('');
+const L=[...document.querySelectorAll('#w .lw span')];
+// soft bokeh
+const R=(()=>{let s=11;return()=>(s=(s*16807)%2147483647)/2147483647})();
+const BK=[...Array(9)].map(()=>{const d=document.createElement('div');d.className='bk';const z=30+R()*110;d.style.width=d.style.height=z+'px';d.style.opacity=.1+R()*.22;$('#bks').appendChild(d);return{d,x:R()*1024,y:R()*1024,ph:R()*6.28,r:30+R()*60,k:1+Math.floor(R()*2)}});
+const SP=[...Array(9)].map((_,i)=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',172);c.setAttribute('cy',120);c.setAttribute('r',i%3?4.5:6.5);c.setAttribute('fill','#fff');c.setAttribute('opacity',0);document.querySelector('#sparks').appendChild(c);return{c,a:-1.25+i*(2.5/8),d:58+((i*37)%30)}});
+gsap.defaults({ease:'expo.out'});
+const tl=gsap.timeline({paused:true});
+const A=(sel,attr,dur,ease,at)=>tl.to(sel,{attr,duration:dur,ease},at);
+const DOT={x:106,y:106,width:28,height:28,rx:14},PILL={x:52,y:100,width:136,height:40,rx:20},SQ={x:20,y:20,width:200,height:200,rx:56};
+// initial states (t=0 : empty brand field)
+gsap.set('#emove',{y:115,scale:1.2,rotationX:0,rotationY:0,transformOrigin:'50% 50%'});
+gsap.set('#e',{scale:0,transformOrigin:'50% 50%'});
+gsap.set(['#sl1','#sl2'],{scaleX:0,transformOrigin:'240px 50%'});gsap.set('#notch',{scale:0,transformOrigin:'172px 120px'});
+gsap.set(L,{yPercent:112,rotation:7,transformOrigin:'0% 100%'});
+
+// ---------- BUILD (0 – 2.3s) ----------
+tl.to('#e',{scale:1,duration:.42,ease:'back.out(2.8)'},.2);
+tl.fromTo('#r1 i',{scale:.15,opacity:.9},{scale:1.5,opacity:0,duration:.8,ease:'power2.out',immediateRender:false},.24);
+A('#base',PILL,.3,'expo.inOut',.52);
+A('#base',SQ,.55,'back.out(1.6)',.76);
+tl.fromTo('#emove',{rotationY:-42,rotationX:24},{rotationY:0,rotationX:0,duration:1.1,ease:'expo.out',immediateRender:false},.76);
+tl.to('#sl1',{scaleX:1,duration:.45,ease:'expo.out'},1.04).to('#sl2',{scaleX:1,duration:.45,ease:'expo.out'},1.12)
+  .to('#notch',{scale:1,duration:.5,ease:'back.out(2.8)'},1.28);
+tl.fromTo('#glow',{opacity:0,scale:.5},{opacity:1,scale:1,duration:.22,ease:'power2.out',immediateRender:false},1.26).to('#glow',{opacity:0,scale:1.25,duration:.9,ease:'power2.out'},1.48);
+tl.fromTo('#r2 i',{scale:.6,opacity:.8},{scale:2.4,opacity:0,duration:1.1,ease:'power2.out',immediateRender:false},1.28);
+const shineE=at=>{tl.fromTo('#band',{attr:{x:-140}},{attr:{x:420},duration:.85,ease:'power2.inOut',immediateRender:false},at).fromTo('#band2',{attr:{x:-140}},{attr:{x:420},duration:.85,ease:'power2.inOut',immediateRender:false},at+.12)};
+shineE(1.36);
+tl.to('#emove',{y:0,scale:1,duration:.85,ease:'expo.inOut'},1.5);
+tl.to(L,{yPercent:0,rotation:0,duration:.75,ease:'back.out(1.5)',stagger:.045},1.9);
+// ---------- HOLD (2.3 – 6.9s) ----------
+const ps={p:-30};const clip=()=>{document.querySelector('#wsh').style.clipPath=`polygon(${ps.p}% 0,${ps.p+13}% 0,${ps.p+5}% 100%,${ps.p-8}% 100%)`};
+const shineW=at=>tl.fromTo(ps,{p:-30},{p:135,duration:.95,ease:'power2.inOut',onUpdate:clip,immediateRender:false},at);
+shineW(2.75);
+tl.to('#ct',{y:-7,duration:1.15,ease:'sine.inOut',yoyo:true,repeat:3},2.4);
+// coin drops into the wallet notch
+const C=4.0;
+tl.to('#coin',{opacity:1,duration:.14,ease:'none'},C).to('#coin',{attr:{cx:172},duration:.6,ease:'power3.in'},C)
+  .to('#coin',{attr:{r:30},duration:.1,ease:'power1.out'},C+.6).set('#notch',{scale:0},C+.64).set('#coin',{opacity:0},C+.64)
+  .to('#e',{scaleX:.92,scaleY:1.07,duration:.1,ease:'power2.out'},C+.6).to('#e',{scaleX:1,scaleY:1,duration:.75,ease:'elastic.out(1,.42)'},C+.7)
+  .fromTo('#cring i',{scale:.5,opacity:.85},{scale:4.2,opacity:0,duration:1,ease:'power2.out',immediateRender:false},C+.64)
+  .fromTo('#cring2 i',{scale:.5,opacity:.6},{scale:6.4,opacity:0,duration:1.3,ease:'power2.out',immediateRender:false},C+.76)
+  .fromTo('#glow',{opacity:0,scale:.6},{opacity:.7,scale:1,duration:.15,ease:'power2.out',immediateRender:false},C+.62).to('#glow',{opacity:0,scale:1.2,duration:.8,ease:'power2.out'},C+.78)
+  .to('#notch',{scale:1,duration:.5,ease:'back.out(2.2)'},C+1.05).set('#coin',{attr:{r:19,cx:372}},C+1.3);
+SP.forEach(o=>{tl.fromTo(o.c,{attr:{cx:172,cy:120},opacity:1},{attr:{cx:172+Math.cos(o.a)*o.d,cy:120+Math.sin(o.a)*o.d},opacity:0,duration:.7,ease:'power3.out',immediateRender:false},C+.64)});
+tl.to(L,{y:-16,duration:.2,ease:'sine.out',stagger:.045,yoyo:true,repeat:1},C+.72);
+shineE(5.75);shineW(5.9);
+// ---------- OUT (returns to the empty field for a seamless loop) ----------
+tl.to(L,{yPercent:112,duration:.42,ease:'expo.in',stagger:{each:.03,from:'end'}},6.85);
+tl.to(['#sl1','#sl2'],{scaleX:0,duration:.28,ease:'expo.in'},7.05).to('#notch',{scale:0,duration:.24,ease:'power2.in'},7.05);
+tl.to('#emove',{y:115,scale:1.2,duration:.5,ease:'expo.inOut'},7.0);
+A('#base',PILL,.26,'expo.in',7.28);A('#base',DOT,.18,'expo.out',7.54);
+tl.to('#e',{scale:0,duration:.2,ease:'back.in(2.4)'},7.68);
+tl.set({},{},D);
+window.prep=async()=>{await document.fonts.ready;tl.time(0)};
+window.seek=t=>{t=((t%D)+D)%D;tl.time(t);
+  const a=2*Math.PI*t/D;
+  $('#b1').style.transform=`translate(${-260+170*Math.cos(a)}px,${-300+150*Math.sin(a)}px)`;
+  $('#b2').style.transform=`translate(${300+160*Math.cos(a+Math.PI)}px,${340+150*Math.sin(a+Math.PI)}px)`;
+  $('#gl').style.transform=`translate(${40*Math.cos(a)}px,${30*Math.sin(a)}px)`;
+  $('#rf').style.transform=`translateY(${14*Math.sin(a*2)}px) rotate(${1.2*Math.sin(a)}deg)`;
+  for(const b of BK)b.d.style.transform=`translate(${b.x+b.r*Math.cos(a*b.k+b.ph)}px,${b.y+b.r*Math.sin(a*b.k+b.ph)}px)`;
+};
+</script>
+</body></html>
