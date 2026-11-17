@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="56 0 392 480" width="784" height="960">
+  <defs>
+    <linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e022cf"/><stop offset=".5" stop-color="#7a2df0"/><stop offset="1" stop-color="#2f5cf2"/></linearGradient>
+    <mask id="mk" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+      <rect width="512" height="512" fill="#000"/>
+      <path d="M404 150 L192 150 Q178 150 184 136 Q206 86 262 66 Q274 62 282 70 Z" fill="#fff" transform="rotate(19 404 150)"/>
+      <path d="M404 150 L150 150 Q136 150 141 137 Q160 92 214 74 Q228 70 239 77 Z" fill="#fff" stroke="#000" stroke-width="14" stroke-linejoin="round"/>
+      <rect x="80" y="150" width="340" height="14" fill="#000"/>
+      <path fill-rule="evenodd" fill="#fff" d="M174 164 H396 a8 8 0 0 1 8 8 V456 a8 8 0 0 1 -8 8 H174 a74 74 0 0 1 -74 -74 V238 a74 74 0 0 1 74 -74 Z M166 240 H404 V388 H166 V342 H286 V286 H166 Z"/>
+      <circle cx="292" cy="314" r="42" fill="#fff"/><circle cx="292" cy="314" r="25" fill="#000"/>
+    </mask>
+  </defs>
+  <!-- change fill to #fff or #000 for a single-colour version -->
+  <rect width="512" height="512" fill="url(#gr)" mask="url(#mk)"/>
+</svg>
