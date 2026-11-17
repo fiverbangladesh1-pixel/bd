@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><title>E-Wallet Poster</title>
+<style>
+@font-face{font-family:Anek;font-weight:100 800;font-stretch:75% 125%;src:url(../v2/fonts/anek-bangla-bengali-standard-normal.woff2);unicode-range:U+0964-0965,U+0980-09FE,U+200C-200D,U+25CC}
+@font-face{font-family:Anek;font-weight:100 800;font-stretch:75% 125%;src:url(../v2/fonts/anek-bangla-latin-standard-normal.woff2)}
+@font-face{font-family:Inter;font-weight:100 900;src:url(../v2/fonts/inter-latin-wght-normal.woff2)}
+@font-face{font-family:Mono;font-weight:500;src:url(../v2/fonts/ibm-plex-mono-latin-500-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;background:#222}
+#p{width:1080px;height:1350px;position:relative;overflow:hidden;color:#fff;font-family:Anek,sans-serif;background:#04160d}
+.bg{position:absolute;inset:0;background:url(gen2/bg_green1_0.png) 60% 100%/auto 100%}
+.sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,22,13,.9) 0%,rgba(4,22,13,.55) 42%,rgba(4,22,13,.25) 70%,rgba(4,22,13,.85) 100%)}
+.demo{position:absolute;left:0;right:0;top:0;height:54px;background:#e0b64f;color:#1a1200;font-family:Mono;font-size:22px;letter-spacing:.5em;display:flex;align-items:center;justify-content:center;padding-left:.5em}
+.top{position:absolute;left:64px;right:64px;top:96px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:18px}
+.brand i{width:74px;height:74px;border-radius:50%;background:url(gen2/up_green_0.png) center/cover;box-shadow:0 0 0 3px #e0b64f}
+.brand b{font-weight:800;font-stretch:125%;font-size:34px;line-height:1;background-image:linear-gradient(180deg,#fff3c4,#e3b54a 55%,#a87a1c);-webkit-background-clip:text;color:transparent}
+.brand span{display:block;font-family:Inter;font-weight:600;font-size:13px;letter-spacing:.5em;color:#fff;margin-top:6px}
+.off{font-family:Mono;font-size:16px;letter-spacing:.3em;color:#e9d08c;border:1.5px solid rgba(224,182,79,.6);padding:10px 18px;border-radius:30px}
+h1{position:absolute;left:64px;right:64px;top:230px;font-weight:800;font-stretch:86%;font-size:118px;line-height:1.16}
+h1 em{font-style:normal;background-image:linear-gradient(180deg,#fff3c4,#e3b54a 55%,#b98a25);-webkit-background-clip:text;color:transparent}
+.sub{position:absolute;left:64px;right:64px;top:530px;font-size:40px;font-weight:500;color:#d5e6dc;line-height:1.4}
+.feat{position:absolute;left:64px;top:690px;width:520px;display:flex;flex-direction:column;gap:18px}
+.feat div{display:flex;align-items:center;gap:20px;font-size:38px;font-weight:600;padding:16px 22px;border-radius:22px;background:rgba(4,22,13,.62);border:1.5px solid rgba(224,182,79,.35)}
+.feat svg{width:40px;height:40px;flex:none;stroke:#e0b64f;fill:none;stroke-width:2.200;stroke-linecap:round;stroke-linejoin:round}
+.hero{position:absolute;right:-30px;top:650px;width:480px;height:480px;border-radius:50%;background:url(gen2/up_green_0.png) center/cover;box-shadow:0 0 0 5px #e0b64f,0 40px 140px rgba(220,175,60,.4)}
+.cta{position:absolute;left:64px;right:64px;bottom:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.tg{display:flex;align-items:center;gap:18px;padding:12px 40px 12px 12px;border-radius:60px;background:linear-gradient(90deg,#2aabee,#1a82d6);font-family:Inter;font-weight:800;font-size:46px;letter-spacing:-.01em;box-shadow:0 20px 60px rgba(30,150,220,.45)}
+.tg span{width:76px;height:76px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
+.tg svg{width:44px;height:44px;margin-left:-5px}
+.msg{font-size:34px;font-weight:600;color:#e9d08c;text-align:right;line-height:1.3}
+</style></head><body>
+<div id="p"><div class="bg"></div><div class="sh"></div>
+  <div class="demo">DEMO — DESIGN PREVIEW</div>
+  <div class="top"><div class="brand"><i></i><div><b>WALLET</b><span>SUPPORT</span></div></div><div class="off">OFFICIAL</div></div>
+  <h1>আপনার ডিজিটাল<br>ওয়ালেট, <em>এক অ্যাপে।</em></h1>
+  <div class="sub">ব্যালেন্স, লেনদেন আর হিসাব —<br>সব এক জায়গায়, সহজে।</div>
+  <div class="feat">
+    <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg>ব্যালেন্স যোগ ও উইথড্র</div>
+    <div><svg viewBox="0 0 24 24"><path d="M3 21h18M6 17V10M11 17V4M16 17v-5M21 17V8"/></svg>লাইভ লেনদেনের হিসাব</div>
+    <div><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>KYC ভেরিফাইড একাউন্ট</div>
+    <div><svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>লাইভ সাপোর্ট</div>
+  </div>
+  <div class="hero"></div>
+  <div class="cta"><div class="tg"><span><svg viewBox="0 0 24 24" fill="#229ed9"><path d="M21.900 4.300 18.600 19.900c-.25 1.100-.9 1.370-1.820.85l-5.030-3.700-2.430 2.330c-.27.27-.5.5-1.010.5l.36-5.120 9.320-8.420c.4-.36-.09-.56-.63-.2L5.840 13.400.88 11.850c-1.080-.34-1.100-1.080.22-1.600L20.500 2.780c.9-.33 1.690.2 1.400 1.520z"/></svg></span>@ewalletbd247</div>
+    <div class="msg">বিস্তারিত জানতে<br>টেলিগ্রামে মেসেজ করুন</div></div>
+</div>
+</body></html>
